@@ -1,4 +1,5 @@
 <?php
+
 /**
  * <CLARkODER> - Developer Portfolio
  * EDONG, CLARK STEVEN T. | 27 | Dahican, Mati City, Philippines, 8200
@@ -9,7 +10,6 @@ $config = [
     'name' => 'EDONG, CLARK STEVEN T.',
     'short_name' => 'CLARkODER',
     'age' => 27,
-    'title' => 'Digital Architect',
     'subtitle' => 'System Engineer',
     'location' => 'Dahican, Mati City, Philippines',
     'postal' => '8200',
@@ -89,17 +89,19 @@ $socialLinks = [
 ?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>&lt;<?php echo $config['short_name']; ?>&gt; | <?php echo $config['name']; ?></title>
-    
+    <title>CLARKODER</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232979FF'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='system-ui'>&lt;/&gt;</text></svg>">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300&display=swap" rel="stylesheet">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -135,41 +137,53 @@ $socialLinks = [
                     },
                     keyframes: {
                         float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
+                            '0%, 100%': {
+                                transform: 'translateY(0)'
+                            },
+                            '50%': {
+                                transform: 'translateY(-20px)'
+                            },
                         },
                         scan: {
-                            '0%': { transform: 'translateY(-100vh)' },
-                            '100%': { transform: 'translateY(100vh)' },
+                            '0%': {
+                                transform: 'translateY(-100vh)'
+                            },
+                            '100%': {
+                                transform: 'translateY(100vh)'
+                            },
                         },
                         type: {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '0' },
+                            '0%, 100%': {
+                                opacity: '1'
+                            },
+                            '50%': {
+                                opacity: '0'
+                            },
                         },
                     },
                 },
             },
         }
     </script>
-    
+
     <!-- Custom Styles -->
     <style>
         :root {
             --cursor-x: 50%;
             --cursor-y: 50%;
         }
-        
+
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
         }
-        
+
         /* Text Reveal Animation */
         .text-reveal {
             position: relative;
             display: inline-block;
             overflow: hidden;
         }
-        
+
         .text-reveal::after {
             content: '';
             position: absolute;
@@ -182,38 +196,38 @@ $socialLinks = [
             transform-origin: right;
             transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
         }
-        
+
         .group:hover .text-reveal::after {
             transform: scaleX(1);
             transform-origin: left;
         }
-        
+
         /* Technical Grid Background */
         .technical-grid {
-            background-image: 
+            background-image:
                 radial-gradient(circle, #e5e7eb 1px, transparent 1px),
                 radial-gradient(circle, #e5e7eb 1px, transparent 1px);
             background-size: 40px 40px;
             background-position: 0 0, 20px 20px;
         }
-        
+
         .dark .technical-grid {
-            background-image: 
+            background-image:
                 radial-gradient(circle, #27273a 1px, transparent 1px),
                 radial-gradient(circle, #27273a 1px, transparent 1px);
         }
-        
+
         /* Asymmetric Border */
         .asymmetric-border {
             border-left: 1px solid currentColor;
             padding-left: 2rem;
         }
-        
+
         /* Glitch Effect */
         .glitch {
             position: relative;
         }
-        
+
         .glitch::before,
         .glitch::after {
             content: attr(data-text);
@@ -223,105 +237,487 @@ $socialLinks = [
             width: 100%;
             height: 100%;
         }
-        
+
         .glitch::before {
             animation: glitch-1 0.3s infinite linear alternate-reverse;
             color: #2979FF;
             z-index: -1;
         }
-        
+
         .glitch::after {
             animation: glitch-2 0.3s infinite linear alternate-reverse;
             color: #00D4AA;
             z-index: -2;
         }
-        
+
         @keyframes glitch-1 {
-            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-            20% { clip-path: inset(20% 0 60% 0); transform: translate(-2px, 2px); }
-            40% { clip-path: inset(40% 0 40% 0); transform: translate(2px, -2px); }
-            60% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, -2px); }
-            80% { clip-path: inset(80% 0 0 0); transform: translate(2px, 2px); }
+
+            0%,
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0);
+            }
+
+            20% {
+                clip-path: inset(20% 0 60% 0);
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                clip-path: inset(40% 0 40% 0);
+                transform: translate(2px, -2px);
+            }
+
+            60% {
+                clip-path: inset(60% 0 20% 0);
+                transform: translate(-2px, -2px);
+            }
+
+            80% {
+                clip-path: inset(80% 0 0 0);
+                transform: translate(2px, 2px);
+            }
         }
-        
+
         @keyframes glitch-2 {
-            0%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
-            20% { clip-path: inset(60% 0 20% 0); transform: translate(2px, -2px); }
-            40% { clip-path: inset(40% 0 40% 0); transform: translate(-2px, 2px); }
-            60% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 2px); }
-            80% { clip-path: inset(0 0 80% 0); transform: translate(-2px, -2px); }
+
+            0%,
+            100% {
+                clip-path: inset(0 0 0 0);
+                transform: translate(0);
+            }
+
+            20% {
+                clip-path: inset(60% 0 20% 0);
+                transform: translate(2px, -2px);
+            }
+
+            40% {
+                clip-path: inset(40% 0 40% 0);
+                transform: translate(-2px, 2px);
+            }
+
+            60% {
+                clip-path: inset(20% 0 60% 0);
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                clip-path: inset(0 0 80% 0);
+                transform: translate(-2px, -2px);
+            }
+        }
+
+/* Projects Grid with Drop Animation */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
         }
         
-        /* Cursor Glow */
-        .cursor-glow {
-            position: fixed;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(41, 121, 255, 0.15) 0%, transparent 70%);
+        @media (min-width: 768px) {
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .project-card-wrapper {
+            animation: dropIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            animation-delay: var(--delay, 0s);
+            opacity: 0;
+            transform: translateY(-100px);
+        }
+        
+        @keyframes dropIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-100px) scale(0.8);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(10px) scale(1.02);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .project-card {
+            transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1), box-shadow 0.5s ease;
+        }
+        
+        /* Animate on scroll */
+        .animate-drop {
+            display: inline-block;
+            animation: dropText 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+        
+        @keyframes dropText {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-bounce {
+            animation: bounce 0.5s ease;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Enhanced Card Hover Effects */
+        .project-card-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(41, 121, 255, 0.2), rgba(0, 212, 170, 0.2));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 5;
+        }
+
+        .project-card:hover .project-card-image::before {
+            opacity: 1;
+        }
+
+        .project-card-image img {
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .project-card:hover .project-card-image img {
+            transform: scale(1.1);
+        }
+
+        /* Enhanced Button Effects */
+        .btn-enhanced {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-enhanced:hover::before {
+            left: 100%;
+        }
+
+        /* Scroll Indicator Animation */
+        .scroll-indicator {
+            animation: scrollBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollBounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
+        }
+
+        /* Text Reveal on Scroll */
+        .reveal-text {
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .reveal-text.revealed {
+            clip-path: inset(0 0 0 0);
+        }
+
+        /* Enhanced Interactive Elements */
+        .hover-lift {
+            transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1), box-shadow 0.4s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(41, 121, 255, 0.15);
+        }
+
+        /* Glow Button Effect */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-glow::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-glow:hover::after {
+            opacity: 1;
+        }
+
+        /* Floating Badge */
+        .floating-badge {
+            animation: floatBadge 3s ease-in-out infinite;
+        }
+
+        @keyframes floatBadge {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-10px) rotate(2deg);
+            }
+        }
+
+        /* Card 3D Tilt Effect */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .tilt-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(-5deg) translateZ(10px);
+        }
+
+        /* Shimmer Effect on Images */
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                left: -100%;
+            }
+
+            50%,
+            100% {
+                left: 100%;
+            }
+        }
+
+        /* Pulse Ring Animation */
+        .pulse-ring {
+            position: relative;
+        }
+
+        .pulse-ring::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
             border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            transition: all 0.1s ease;
-            z-index: 9999;
-            mix-blend-mode: screen;
+            border: 2px solid currentColor;
+            opacity: 0;
+            animation: pulseRing 2s ease-out infinite;
         }
-        
+
+        @keyframes pulseRing {
+            0% {
+                transform: scale(0.8);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Typing Cursor Animation */
+        .typing-cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: #2979FF;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                opacity: 1;
+            }
+
+            51%,
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Magnetic Button Effect */
+        .magnetic-btn {
+            transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        /* Skew Hover Effect */
+        .skew-hover {
+            transition: transform 0.3s ease;
+        }
+
+        .skew-hover:hover {
+            transform: skewX(-5deg);
+        }
+
+        /* Image Reveal Animation */
+        .image-reveal {
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 1s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .image-reveal.revealed {
+            clip-path: inset(0 0 0 0);
+        }
+
+        /* Number Counter Animation */
+        .counter {
+            display: inline-block;
+        }
+
+        /* Gradient Border Animation */
+        .gradient-border {
+            position: relative;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #2979FF, #00D4AA, #FF6B35, #A855F7);
+            border-radius: inherit;
+            z-index: -1;
+            animation: gradientRotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes gradientRotate {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
         /* Smooth Scroll */
         html {
             scroll-behavior: smooth;
         }
-        
+
         /* Hide scrollbar but allow scrolling */
         body {
             overflow-x: hidden;
         }
-        
+
         ::-webkit-scrollbar {
             width: 8px;
         }
-        
+
         ::-webkit-scrollbar-track {
             background: transparent;
         }
-        
+
         ::-webkit-scrollbar-thumb {
             background: #2979FF;
             border-radius: 4px;
         }
-        
+
         .dark ::-webkit-scrollbar-thumb {
             background: #2979FF;
         }
-        
+
         /* Line draw animation */
         .line-draw {
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
             animation: draw 2s ease forwards;
         }
-        
+
         @keyframes draw {
             to {
                 stroke-dashoffset: 0;
             }
         }
-        
+
         /* Terminal effect */
         .terminal-text::after {
             content: '_';
             animation: blink 1s step-end infinite;
         }
-        
+
         @keyframes blink {
-            50% { opacity: 0; }
+            50% {
+                opacity: 0;
+            }
         }
-        
+
         /* Parallax container */
         .parallax-container {
             transform-style: preserve-3d;
             perspective: 1000px;
         }
         
+        /* Flip animation utilities */
+        .perspective-500 {
+            perspective: 500px;
+            transform-style: preserve-3d;
+        }
+        
+        .rotate-x-180 {
+            transform: rotateX(180deg);
+        }
+        
+        .scale-y-\[-1\] {
+            transform: scaleY(-1);
+        }
+        
+        .transform-style-preserve-3d {
+            transform-style: preserve-3d;
+        }
+
         /* Gradient text */
         .gradient-text {
             background: linear-gradient(135deg, #2979FF, #00D4AA);
@@ -330,15 +726,16 @@ $socialLinks = [
             background-clip: text;
         }
     </style>
-    
+
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232979FF'/><text x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='monospace'>&lt;/&gt;</text></svg>">
 </head>
+
 <body class="bg-surface text-on-surface font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-500">
-    
+
     <!-- Cursor Glow -->
     <div class="cursor-glow hidden lg:block" id="cursorGlow"></div>
-    
+
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-[100] bg-white/90 dark:bg-[#0a0b0d]/90 backdrop-blur-md border-b border-gray-200 dark:border-[#27273a] transition-colors duration-500">
         <div class="flex justify-between items-center max-w-[1440px] mx-auto px-6 md:px-16 h-20 md:h-24">
@@ -348,64 +745,64 @@ $socialLinks = [
                 <span class="text-primary glitch" data-text="<?php echo $config['short_name']; ?>"><?php echo $config['short_name']; ?></span>
                 <span class="inline-block transition-transform duration-500 group-hover:translate-y-1">/&gt;</span>
             </a>
-            
+
             <!-- Desktop Nav -->
             <div class="hidden md:flex items-center gap-8 lg:gap-12">
                 <?php foreach ($navItems as $item): ?>
-                <a href="#<?php echo $item['id']; ?>" class="text-xs font-bold tracking-[0.2em] uppercase group">
-                    <span class="text-reveal text-on-surface-variant hover:text-primary transition-colors"><?php echo $item['label']; ?></span>
-                </a>
+                    <a href="#<?php echo $item['id']; ?>" class="text-xs font-bold tracking-[0.2em] uppercase group">
+                        <span class="text-reveal text-on-surface-variant hover:text-primary transition-colors"><?php echo $item['label']; ?></span>
+                    </a>
                 <?php endforeach; ?>
-                
+
                 <!-- Theme Toggle -->
                 <button id="themeToggle" class="w-10 h-10 rounded-full border border-gray-200 dark:border-[#27273a] flex items-center justify-center hover:border-primary transition-colors">
                     <span class="material-symbols-outlined text-lg" id="themeIcon">dark_mode</span>
                 </button>
-                
+
                 <a href="#transmit" class="bg-on-surface text-white dark:bg-white dark:text-on-surface px-6 py-3 text-xs font-bold tracking-[0.15em] uppercase hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all duration-500">
                     Transmit
                 </a>
             </div>
-            
+
             <!-- Mobile Menu Button -->
             <button class="md:hidden" id="mobileMenuBtn">
                 <span class="material-symbols-outlined text-3xl">menu_open</span>
             </button>
         </div>
-        
+
         <!-- Mobile Menu -->
         <div class="hidden md:hidden bg-white/95 dark:bg-[#0a0b0d]/95 border-t border-gray-200 dark:border-[#27273a]" id="mobileMenu">
             <div class="px-6 py-8 space-y-6">
                 <?php foreach ($navItems as $item): ?>
-                <a href="#<?php echo $item['id']; ?>" class="block text-sm font-bold tracking-[0.2em] uppercase text-on-surface hover:text-primary transition-colors mobile-link">
-                    <span class="text-primary"><?php echo $item['index']; ?></span> <?php echo $item['label']; ?>
-                </a>
+                    <a href="#<?php echo $item['id']; ?>" class="block text-sm font-bold tracking-[0.2em] uppercase text-on-surface hover:text-primary transition-colors mobile-link">
+                        <span class="text-primary"><?php echo $item['index']; ?></span> <?php echo $item['label']; ?>
+                    </a>
                 <?php endforeach; ?>
             </div>
         </div>
     </nav>
 
     <main class="parallax-container">
-        
+
         <!-- Hero Section -->
         <section class="min-h-screen pt-20 md:pt-24 flex items-center relative overflow-hidden technical-grid" id="hero">
             <!-- Scanning Line -->
             <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent animate-scan z-10 opacity-60"></div>
-            
+
             <!-- Floating Geometric Elements -->
             <div class="absolute right-10 top-1/4 opacity-10 pointer-events-none hidden xl:block">
                 <svg width="300" height="300" viewBox="0 0 100 100" class="animate-spin-slow">
-                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-dasharray="2,2" stroke-width="0.5"/>
-                    <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="0.2"/>
-                    <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" stroke-width="0.2"/>
-                    <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" stroke-width="0.2"/>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-dasharray="2,2" stroke-width="0.5" />
+                    <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="0.2" />
+                    <line x1="50" y1="0" x2="50" y2="100" stroke="currentColor" stroke-width="0.2" />
+                    <line x1="0" y1="50" x2="100" y2="50" stroke="currentColor" stroke-width="0.2" />
                 </svg>
             </div>
-            
+
             <div class="absolute left-20 bottom-20 opacity-10 pointer-events-none hidden xl:block">
                 <div class="w-40 h-40 border border-current rounded-full animate-pulse-slow"></div>
             </div>
-            
+
             <div class="max-w-[1440px] mx-auto px-6 md:px-16 w-full grid grid-cols-12 gap-8 py-12 md:py-20">
                 <!-- Text Content -->
                 <div class="col-span-12 lg:col-span-7 order-2 lg:order-1">
@@ -415,76 +812,71 @@ $socialLinks = [
                             <span class="w-2 h-2 bg-teal rounded-full animate-pulse"></span>
                             <?php echo $config['status']; ?>
                         </span>
-                        
+
                         <!-- Hacker Terminal -->
                         <div class="font-mono text-sm text-on-surface-variant mb-4 opacity-80">
                             <span class="text-teal">root@<?php echo strtolower($config['short_name']); ?>:~$</span>
                             <span class="terminal-text" id="terminalCommand">whoami</span>
                         </div>
                     </div>
-                    
+
                     <!-- Main Title -->
                     <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[8rem] font-bold leading-[0.85] tracking-tighter mb-8 md:mb-12">
-                        <span class="block overflow-hidden">
-                            <span class="inline-block animate-slide-up">CLARK</span>
+                        <span class="block overflow-hidden group">
+                            <span class="inline-block animate-slide-up group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500 transform-style-preserve-3d perspective">CLARK</span>
                         </span>
-                        <span class="block overflow-hidden">
-                            <span class="inline-block animate-slide-up" style="animation-delay: 0.1s">STEVEN</span>
+                        <span class="block overflow-hidden group">
+                            <span class="inline-block animate-slide-up group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500" style="animation-delay: 0.1s">STEVEN</span>
                         </span>
-                        <span class="block overflow-hidden gradient-text">
-                            <span class="inline-block animate-slide-up" style="animation-delay: 0.2s">EDONG.</span>
+                        <span class="block overflow-hidden gradient-text group">
+                            <span class="inline-block animate-slide-up group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500" style="animation-delay: 0.2s">EDONG.</span>
                         </span>
                     </h1>
-                    
+
                     <!-- Subtitle -->
                     <p class="text-lg md:text-xl text-on-surface-variant max-w-xl leading-relaxed font-light asymmetric-border mb-8 md:mb-12">
                         <span class="text-primary font-medium">&lt;<?php echo $config['title']; ?>/&gt;</span><br>
                         A technical architect bridging the gap between clinical performance and editorial aesthetics. Building resilient digital ecosystems from <?php echo $config['location']; ?>, <?php echo $config['postal']; ?>.
                     </p>
-                    
+
                     <!-- CTA Buttons -->
                     <div class="flex flex-wrap gap-4">
-                        <a href="#archive" class="group bg-primary text-white px-8 py-4 text-xs font-bold tracking-[0.2em] uppercase hover:bg-primary-dark transition-all duration-500 flex items-center gap-3">
+                        <a href="#archive" class="group bg-primary text-white px-8 py-4 text-xs font-bold tracking-[0.2em] uppercase hover:bg-primary-dark transition-all duration-500 flex items-center gap-3 btn-glow hover-lift">
                             View Archive
                             <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
                         </a>
-                        <a href="#transmit" class="group border border-on-surface dark:border-gray-600 px-8 py-4 text-xs font-bold tracking-[0.2em] uppercase hover:bg-on-surface hover:text-white dark:hover:bg-white dark:hover:text-on-surface transition-all duration-500">
+                        <a href="#transmit" class="group border border-on-surface dark:border-gray-600 px-8 py-4 text-xs font-bold tracking-[0.2em] uppercase hover:bg-on-surface hover:text-white dark:hover:bg-white dark:hover:text-on-surface transition-all duration-500 skew-hover">
                             Initiate Link
                         </a>
                     </div>
                 </div>
-                
+
                 <!-- Profile Image -->
                 <div class="col-span-12 lg:col-span-5 relative flex items-center justify-center order-1 lg:order-2 mb-8 lg:mb-0">
-                    <div class="relative w-full max-w-[350px] aspect-[4/5] group overflow-hidden">
+                    <div class="relative w-full max-w-[350px] aspect-[4/5] group overflow-hidden tilt-card">
                         <!-- Image Frame -->
                         <div class="absolute inset-0 border-2 border-primary/30 rounded-lg transform rotate-3 group-hover:rotate-6 transition-transform duration-700"></div>
-                        
-                        <!-- Image -->
-                        <img 
-                            src="<?php echo $config['profile_image']; ?>" 
+
+                        <!-- Image with shimmer effect - shows dark mode image in dark mode -->
+                        <img
+                            id="profileImage"
+                            src="assets/profile.jpg"
                             alt="<?php echo $config['name']; ?>"
-                            class="relative z-10 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 rounded-lg shadow-2xl"
-                            onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop'"
-                        >
-                        
-                        <!-- Sunglasses Overlay (Dark Mode Only) -->
-                        <div class="sunglasses-overlay absolute top-[35%] left-1/2 -translate-x-1/2 opacity-0 pointer-events-none z-20 transition-opacity duration-500">
-                            <div class="w-[140px] h-[40px] bg-gradient-to-b from-[#1a1a1a] to-[#0a0a0a] rounded-full shadow-lg flex items-center justify-center gap-4">
-                                <div class="w-[50px] h-[30px] bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] rounded-full border-2 border-[#3a3a3a]"></div>
-                                <div class="w-[8px] h-[3px] bg-[#3a3a3a] rounded-full"></div>
-                                <div class="w-[50px] h-[30px] bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] rounded-full border-2 border-[#3a3a3a]"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Hover Label -->
+                            class="relative z-10 w-full h-full object-cover transition-all duration-1000 rounded-lg shadow-2xl image-reveal"
+                            onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop'">
+
+                        <!-- Hover Label with floating animation -->
                         <div class="absolute bottom-6 left-6 text-white z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                            <p class="text-xs tracking-widest uppercase font-bold bg-black/50 px-3 py-1 rounded">System Online</p>
+                            <p class="text-xs tracking-widest uppercase font-bold bg-black/50 px-3 py-1 rounded floating-badge">System Online</p>
                         </div>
+
+                        <!-- Decorative corner elements -->
+                        <div class="absolute top-4 right-4 w-4 h-4 border-t-2 border-r-2 border-primary/50 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                        <div class="absolute bottom-4 left-4 w-4 h-4 border-b-2 border-l-2 border-primary/50 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                     </div>
-                    
+
                     <!-- Decorative Elements -->
-                    <div class="absolute -right-8 top-1/4 w-20 h-20 border border-primary/30 rounded-full animate-float hidden lg:block"></div>
+                    <div class="absolute -right-8 top-1/4 w-20 h-20 border border-primary/30 rounded-full animate-float hidden lg:block pulse-ring"></div>
                     <div class="absolute -left-4 bottom-1/4 w-12 h-12 bg-teal/20 rounded-full animate-float hidden lg:block" style="animation-delay: -2s;"></div>
                 </div>
             </div>
@@ -494,94 +886,103 @@ $socialLinks = [
         <section class="py-24 md:py-32 bg-on-surface text-white" id="manifest">
             <div class="max-w-[1440px] mx-auto px-6 md:px-16">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-                    <div class="space-y-4 group">
-                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block">01 / Identity</span>
-                        <h3 class="text-2xl md:text-3xl font-light"><?php echo $config['name']; ?></h3>
+                    <div class="space-y-4 group perspective-500">
+                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">01 / Identity</span>
+                        <h3 class="text-2xl md:text-3xl font-light group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500"><?php echo $config['name']; ?></h3>
                         <div class="h-[1px] w-0 bg-primary group-hover:w-full transition-all duration-700"></div>
                     </div>
-                    <div class="space-y-4 group">
-                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block">02 / Age Units</span>
-                        <h3 class="text-2xl md:text-3xl font-light"><?php echo $config['age']; ?> Years</h3>
+                    <div class="space-y-4 group perspective-500">
+                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">02 / Age Units</span>
+                        <h3 class="text-2xl md:text-3xl font-light group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500"><?php echo $config['age']; ?> Years</h3>
                         <div class="h-[1px] w-0 bg-teal group-hover:w-full transition-all duration-700"></div>
                     </div>
-                    <div class="space-y-4 group">
-                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block">03 / Coordinates</span>
-                        <h3 class="text-2xl md:text-3xl font-light leading-snug"><?php echo $config['location']; ?>,<br><?php echo $config['postal']; ?></h3>
+                    <div class="space-y-4 group perspective-500">
+                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">03 / Coordinates</span>
+                        <h3 class="text-2xl md:text-3xl font-light leading-snug group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500"><?php echo $config['location']; ?>,<br><?php echo $config['postal']; ?></h3>
                         <div class="h-[1px] w-0 bg-orange group-hover:w-full transition-all duration-700"></div>
                     </div>
                 </div>
-                
+
                 <!-- Additional Stats -->
                 <div class="mt-20 pt-12 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <div class="text-center">
-                        <span class="text-4xl md:text-5xl font-bold text-primary">50+</span>
+                    <div class="text-center group perspective-500 cursor-pointer">
+                        <span class="text-4xl md:text-5xl font-bold text-primary block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">50+</span>
                         <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60">Deployments</p>
                     </div>
-                    <div class="text-center">
-                        <span class="text-4xl md:text-5xl font-bold text-teal">6+</span>
+                    <div class="text-center group perspective-500 cursor-pointer">
+                        <span class="text-4xl md:text-5xl font-bold text-teal block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">6+</span>
                         <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60">Years Active</p>
                     </div>
-                    <div class="text-center">
-                        <span class="text-4xl md:text-5xl font-bold text-orange">30+</span>
+                    <div class="text-center group perspective-500 cursor-pointer">
+                        <span class="text-4xl md:text-5xl font-bold text-orange block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">30+</span>
                         <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60">Clients Served</p>
                     </div>
-                    <div class="text-center">
-                        <span class="text-4xl md:text-5xl font-bold text-purple">100%</span>
+                    <div class="text-center group perspective-500 cursor-pointer">
+                        <span class="text-4xl md:text-5xl font-bold text-purple block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">100%</span>
                         <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60">Availability</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Archive / Projects Section -->
+<!-- Archive / Projects Section -->
         <section class="py-24 md:py-40" id="archive">
             <div class="max-w-[1440px] mx-auto px-6 md:px-16">
                 <!-- Section Header -->
                 <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 md:mb-24 border-b border-gray-200 dark:border-[#27273a] pb-8 md:pb-12">
-                    <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase mb-6 md:mb-0">
-                        The<br>Archive
+                    <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase mb-6 md:mb-0 group">
+                        <span class="block animate-drop hover:animate-bounce">The</span>
+                        <span class="block animate-drop hover:animate-bounce" style="animation-delay: 0.1s">Archive</span>
                     </h2>
                     <p class="max-w-xs text-on-surface-variant text-sm font-medium leading-relaxed">
                         Selected works from the laboratory. Rigorous examination of patterns and technical architecture.
                     </p>
                 </div>
-                
-                <!-- Projects Grid -->
-                <div class="space-y-20 md:space-y-32">
+
+                <!-- Projects Grid with Drop Animation -->
+                <div class="projects-grid">
                     <?php foreach ($projects as $index => $project): ?>
-                    <div class="group grid grid-cols-12 gap-6 md:gap-8 items-center">
-                        <!-- Image -->
-                        <div class="col-span-12 <?php echo $index % 2 === 0 ? 'lg:col-span-7' : 'lg:col-span-7 lg:order-2'; ?> overflow-hidden bg-surface-dim aspect-video relative rounded-lg">
-                            <img 
-                                src="<?php echo $project['image']; ?>" 
-                                alt="<?php echo $project['title']; ?>"
-                                class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
-                            >
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            
-                            <!-- Hover Overlay -->
-                            <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
-                                <span class="text-white text-xs font-bold tracking-widest uppercase">View Case Study</span>
-                                <span class="material-symbols-outlined text-white">arrow_outward</span>
+                    <div class="project-card-wrapper group" style="--delay: <?php echo $index * 0.15; ?>s;">
+                        <div class="project-card bg-surface-dim rounded-xl overflow-hidden cursor-pointer group-hover:-translate-y-2 transition-all duration-500 shadow-lg hover:shadow-xl">
+                            <div class="project-card-image aspect-video relative overflow-hidden">
+                                <img
+                                    src="<?php echo $project['image']; ?>"
+                                    alt="<?php echo $project['title']; ?>"
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                
+                                <!-- Floating Tech Stack Tags -->
+                                <div class="absolute top-4 left-4 flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-y-2 group-hover:translate-y-0">
+                                    <span class="text-[10px] font-bold tracking-widest uppercase bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">React</span>
+                                    <span class="text-[10px] font-bold tracking-widest uppercase bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">Node.js</span>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <!-- Content -->
-                        <div class="col-span-12 <?php echo $index % 2 === 0 ? 'lg:col-span-5 lg:pl-8' : 'lg:col-span-5 lg:order-1 lg:pr-8'; ?>">
-                            <span class="text-xs font-bold tracking-[0.3em] uppercase text-<?php echo $project['accent']; ?> mb-4 block"><?php echo $project['subtitle']; ?></span>
-                            <h3 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 tracking-tighter"><?php echo $project['title']; ?></h3>
-                            <p class="text-on-surface-variant mb-6 md:mb-8 leading-relaxed text-sm md:text-base">
-                                <?php echo $project['desc']; ?>
-                            </p>
-                            <div class="flex flex-wrap gap-4">
-                                <a href="#" class="flex items-center gap-2 text-xs font-bold tracking-widest uppercase border border-on-surface dark:border-gray-600 px-6 py-3 hover:bg-on-surface hover:text-white dark:hover:bg-white dark:hover:text-on-surface transition-all duration-300 group/link">
-                                    Live Demo
-                                    <span class="material-symbols-outlined text-sm transition-transform group-hover/link:translate-x-1">open_in_new</span>
-                                </a>
-                                <a href="#" class="flex items-center gap-2 text-xs font-bold tracking-widest uppercase px-6 py-3 bg-surface-dim hover:bg-gray-200 dark:hover:bg-[#1a1c22] transition-all duration-300">
-                                    <span class="material-symbols-outlined text-sm">code</span>
-                                    Source
-                                </a>
+                            
+                            <!-- Card Content -->
+                            <div class="p-6 md:p-8 relative">
+                                <!-- Card number badge -->
+                                <div class="absolute -top-5 left-6 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                                    <?php echo str_pad($index + 1, 2, '0', STR_PAD_LEFT); ?>
+                                </div>
+                                
+                                <span class="text-xs font-bold tracking-[0.3em] uppercase text-<?php echo $project['accent']; ?> mb-3 block"><?php echo $project['subtitle']; ?></span>
+                                <h3 class="text-2xl md:text-3xl font-bold mb-3 tracking-tight group-hover:text-primary transition-colors"><?php echo $project['title']; ?></h3>
+                                <p class="text-on-surface-variant leading-relaxed text-sm md:text-base">
+                                    <?php echo $project['desc']; ?>
+                                </p>
+                                
+                                <!-- Tech Pills -->
+                                <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-200 dark:border-[#27273a]">
+                                    <span class="text-[10px] font-bold tracking-wider uppercase bg-gray-100 dark:bg-[#27273a] px-3 py-1 rounded">JavaScript</span>
+                                    <span class="text-[10px] font-bold tracking-wider uppercase bg-gray-100 dark:bg-[#27273a] px-3 py-1 rounded">PostgreSQL</span>
+                                    <span class="text-[10px] font-bold tracking-wider uppercase bg-gray-100 dark:bg-[#27273a] px-3 py-1 rounded">AWS</span>
+                                </div>
+                                
+                                <!-- Action buttons -->
+                                <div class="flex gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                    <a href="#" class="flex-1 py-3 text-center text-xs font-bold tracking-widest uppercase bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">View</a>
+                                    <a href="#" class="flex-1 py-3 text-center text-xs font-bold tracking-widest uppercase border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-[#27273a] transition-colors">Code</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -594,7 +995,7 @@ $socialLinks = [
         <section class="py-24 md:py-40 bg-surface-dim border-y border-gray-200 dark:border-[#27273a] relative overflow-hidden" id="capabilities">
             <!-- Background Pattern -->
             <div class="absolute inset-0 technical-grid opacity-50"></div>
-            
+
             <div class="max-w-[1440px] mx-auto px-6 md:px-16 grid grid-cols-12 gap-8 md:gap-12 relative z-10">
                 <div class="col-span-12 lg:col-span-4">
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tighter uppercase mb-6 md:mb-8">
@@ -604,18 +1005,18 @@ $socialLinks = [
                         Core engine stack and proficiency matrix. Selected for performance and reliability.
                     </p>
                 </div>
-                
+
                 <div class="col-span-12 lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-200 dark:bg-[#27273a]">
                     <?php foreach ($skills as $skill): ?>
-                    <div class="bg-surface p-6 md:p-10 flex flex-col items-center justify-center group cursor-crosshair hover:bg-surface-dim transition-colors duration-300">
-                        <span class="material-symbols-outlined text-3xl md:text-4xl mb-4 text-primary transition-transform duration-700 group-hover:rotate-180">
-                            <?php echo $skill['icon']; ?>
-                        </span>
-                        <span class="text-xs font-bold tracking-widest uppercase text-center"><?php echo $skill['name']; ?></span>
-                        <div class="mt-3 w-full h-1 bg-gray-200 dark:bg-[#27273a] rounded-full overflow-hidden">
-                            <div class="h-full bg-primary rounded-full" style="width: <?php echo $skill['level']; ?>%"></div>
+                        <div class="bg-surface p-6 md:p-10 flex flex-col items-center justify-center group cursor-crosshair hover:bg-surface-dim transition-colors duration-300">
+                            <span class="material-symbols-outlined text-3xl md:text-4xl mb-4 text-primary transition-transform duration-700 group-hover:rotate-180">
+                                <?php echo $skill['icon']; ?>
+                            </span>
+                            <span class="text-xs font-bold tracking-widest uppercase text-center"><?php echo $skill['name']; ?></span>
+                            <div class="mt-3 w-full h-1 bg-gray-200 dark:bg-[#27273a] rounded-full overflow-hidden">
+                                <div class="h-full bg-primary rounded-full" style="width: <?php echo $skill['level']; ?>%"></div>
+                            </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -628,26 +1029,26 @@ $socialLinks = [
                     <span class="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4 block">2018 — 2024</span>
                     <h2 class="text-4xl md:text-6xl font-bold tracking-tighter uppercase">The Journey</h2>
                 </div>
-                
+
                 <div class="relative">
                     <!-- Timeline Line -->
                     <div class="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-gray-200 dark:bg-[#27273a] md:-translate-x-1/2"></div>
                     <div class="absolute left-4 md:left-1/2 top-0 w-[2px] h-[30%] bg-gradient-to-b from-primary to-teal md:-translate-x-1/2 animate-pulse"></div>
-                    
+
                     <!-- Timeline Items -->
                     <div class="space-y-12 md:space-y-0">
                         <?php foreach ($timeline as $index => $item): ?>
-                        <div class="relative md:grid md:grid-cols-2 md:gap-16 <?php echo $index > 0 ? 'md:mt-12' : ''; ?>">
-                            <!-- Marker -->
-                            <div class="absolute left-4 md:left-1/2 top-0 w-3 h-3 rounded-full bg-primary border-4 border-surface md:-translate-x-1/2 z-10 shadow-lg shadow-primary/30"></div>
-                            
-                            <!-- Content -->
-                            <div class="pl-12 md:pl-0 <?php echo $index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:col-start-2 md:pl-16'; ?>">
-                                <span class="text-primary font-mono text-sm font-bold"><?php echo $item['year']; ?></span>
-                                <h3 class="text-xl md:text-2xl font-bold mt-2 mb-2"><?php echo $item['title']; ?></h3>
-                                <p class="text-on-surface-variant text-sm"><?php echo $item['desc']; ?></p>
+                            <div class="relative md:grid md:grid-cols-2 md:gap-16 <?php echo $index > 0 ? 'md:mt-12' : ''; ?>">
+                                <!-- Marker -->
+                                <div class="absolute left-4 md:left-1/2 top-0 w-3 h-3 rounded-full bg-primary border-4 border-surface md:-translate-x-1/2 z-10 shadow-lg shadow-primary/30"></div>
+
+                                <!-- Content -->
+                                <div class="pl-12 md:pl-0 <?php echo $index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:col-start-2 md:pl-16'; ?>">
+                                    <span class="text-primary font-mono text-sm font-bold"><?php echo $item['year']; ?></span>
+                                    <h3 class="text-xl md:text-2xl font-bold mt-2 mb-2"><?php echo $item['title']; ?></h3>
+                                    <p class="text-on-surface-variant text-sm"><?php echo $item['desc']; ?></p>
+                                </div>
                             </div>
-                        </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
@@ -665,21 +1066,21 @@ $socialLinks = [
                     <p class="text-lg md:text-xl font-light text-on-surface-variant mb-8 md:mb-16 leading-relaxed">
                         Available for senior partnerships and strategic consulting. Ready to define the next iteration.
                     </p>
-                    
+
                     <!-- Social Links -->
                     <div class="space-y-4 md:space-y-6">
                         <?php foreach ($socialLinks as $link): ?>
-                        <a href="<?php echo $link['url']; ?>" class="group flex items-center justify-between border-b border-gray-200 dark:border-[#27273a] pb-3 md:pb-4">
-                            <span class="text-xs font-bold tracking-[0.3em] uppercase group-hover:text-primary transition-colors flex items-center gap-3">
-                                <span class="material-symbols-outlined text-lg"><?php echo $link['icon']; ?></span>
-                                <?php echo $link['label']; ?>
-                            </span>
-                            <span class="material-symbols-outlined -rotate-45 transition-transform duration-500 group-hover:rotate-0">arrow_forward</span>
-                        </a>
+                            <a href="<?php echo $link['url']; ?>" class="group flex items-center justify-between border-b border-gray-200 dark:border-[#27273a] pb-3 md:pb-4">
+                                <span class="text-xs font-bold tracking-[0.3em] uppercase group-hover:text-primary transition-colors flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-lg"><?php echo $link['icon']; ?></span>
+                                    <?php echo $link['label']; ?>
+                                </span>
+                                <span class="material-symbols-outlined -rotate-45 transition-transform duration-500 group-hover:rotate-0">arrow_forward</span>
+                            </a>
                         <?php endforeach; ?>
                     </div>
                 </div>
-                
+
                 <div class="col-span-12 lg:col-span-7">
                     <form id="contactForm" class="space-y-6 md:space-y-8">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
@@ -699,7 +1100,7 @@ $socialLinks = [
                             <textarea placeholder="Project Description / Message" rows="4" required
                                 class="w-full bg-transparent border-0 border-b border-gray-200 dark:border-[#27273a] px-0 py-3 md:py-4 focus:ring-0 focus:border-primary transition-colors placeholder:text-gray-400 resize-none"></textarea>
                         </div>
-                        <button type="submit" 
+                        <button type="submit"
                             class="w-full md:w-auto bg-on-surface text-white dark:bg-white dark:text-on-surface px-8 md:px-16 py-4 md:py-6 text-sm font-bold tracking-[0.3em] uppercase hover:bg-primary dark:hover:bg-primary dark:hover:text-white transition-all duration-500 flex items-center justify-center gap-4 group">
                             Transmit Message
                             <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_right_alt</span>
@@ -734,59 +1135,98 @@ $socialLinks = [
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const html = document.documentElement;
-        
-        // Check saved theme
+
+        // Check saved theme and set profile image
         const savedTheme = localStorage.getItem('theme') || 'dark';
         if (savedTheme === 'dark') {
             html.classList.add('dark');
             themeIcon.textContent = 'light_mode';
+            document.getElementById('profileImage').src = 'assets/profile-darkmode.png';
         } else {
             themeIcon.textContent = 'dark_mode';
+            document.getElementById('profileImage').src = 'assets/profile.jpg';
         }
-        
+
         themeToggle.addEventListener('click', () => {
             html.classList.toggle('dark');
             const isDark = html.classList.contains('dark');
             themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
-            
-            // Trigger sunglasses animation
-            if (isDark) {
-                setTimeout(() => {
-                    document.querySelector('.sunglasses-overlay')?.classList.add('dark-active');
-                }, 100);
+
+            // Switch profile image based on theme
+            const profileImg = document.getElementById('profileImage');
+            if (profileImg) {
+                profileImg.src = isDark ? 'assets/profile-darkmode.png' : 'assets/profile.jpg';
             }
         });
-        
+
         // Mobile Menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-        
+
         // Close mobile menu on link click
         document.querySelectorAll('.mobile-link').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
-            });
+});
         });
+
+        // Custom Cursor (Desktop only)
+        const cursorDot = document.createElement('div');
+        cursorDot.style.cssText = 'position:fixed;width:12px;height:12px;background:#2979FF;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity 0.2s;';
+        document.body.appendChild(cursorDot);
         
-        // Cursor Glow (Desktop only)
-        const cursorGlow = document.getElementById('cursorGlow');
-        if (cursorGlow && window.matchMedia('(pointer: fine)').matches) {
+        const cursorRing = document.createElement('div');
+        cursorRing.style.cssText = 'position:fixed;width:40px;height:40px;border:1px solid #2979FF;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.15s ease-out,opacity 0.2s;';
+        document.body.appendChild(cursorRing);
+        
+        let cursorX = 0, cursorY = 0;
+        let ringX = 0, ringY = 0;
+        
+        if (window.matchMedia('(pointer: fine)').matches) {
             document.addEventListener('mousemove', (e) => {
-                cursorGlow.style.left = e.clientX + 'px';
-                cursorGlow.style.top = e.clientY + 'px';
+                cursorX = e.clientX;
+                cursorY = e.clientY;
+                
+                if (cursorGlow) {
+                    cursorGlow.style.left = cursorX + 'px';
+                    cursorGlow.style.top = cursorY + 'px';
+                }
+            });
+            
+            function animateCursor() {
+                cursorDot.style.left = cursorX + 'px';
+                cursorDot.style.top = cursorY + 'px';
+                
+                ringX += (cursorX - ringX) * 0.15;
+                ringY += (cursorY - ringY) * 0.15;
+                cursorRing.style.left = ringX + 'px';
+                cursorRing.style.top = ringY + 'px';
+                
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+            
+            document.addEventListener('mouseleave', () => {
+                cursorDot.style.opacity = '0';
+                cursorRing.style.opacity = '0';
+            });
+            
+            document.addEventListener('mouseenter', () => {
+                cursorDot.style.opacity = '1';
+                cursorRing.style.opacity = '1';
             });
         }
-        
+
         // Terminal Command Rotator
         const commands = ['whoami', 'ls -la /projects', 'git status', 'npm run build', 'docker ps', 'ssh deploy@production'];
         let cmdIndex = 0;
         const terminalCommand = document.getElementById('terminalCommand');
-        
+
         if (terminalCommand) {
             setInterval(() => {
                 cmdIndex = (cmdIndex + 1) % commands.length;
@@ -797,24 +1237,24 @@ $socialLinks = [
                 }, 200);
             }, 3000);
         }
-        
+
         // Parallax Effect
         document.addEventListener('mousemove', (e) => {
             const targets = document.querySelectorAll('.parallax-target');
             const x = (window.innerWidth - e.pageX * 2) / 100;
             const y = (window.innerHeight - e.pageY * 2) / 100;
-            
+
             targets.forEach(target => {
                 target.style.transform = `translateX(${x}px) translateY(${y}px)`;
             });
         });
-        
+
         // Intersection Observer for Animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
         };
-        
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -822,9 +1262,9 @@ $socialLinks = [
                 }
             });
         }, observerOptions);
-        
+
         document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
-        
+
         // Smooth Scroll for Anchor Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -838,7 +1278,7 @@ $socialLinks = [
                 }
             });
         });
-        
+
         // Form Submission
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
@@ -846,15 +1286,15 @@ $socialLinks = [
                 e.preventDefault();
                 const btn = contactForm.querySelector('button[type="submit"]');
                 const originalText = btn.innerHTML;
-                
+
                 btn.innerHTML = '<span class="animate-pulse">TRANSMITTING...</span>';
                 btn.disabled = true;
-                
+
                 // Simulate transmission
                 await new Promise(resolve => setTimeout(resolve, 2000));
-                
+
                 btn.innerHTML = '<span class="text-teal">TRANSMITTED ✓</span>';
-                
+
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.disabled = false;
@@ -862,7 +1302,7 @@ $socialLinks = [
                 }, 3000);
             });
         }
-        
+
         // Scroll Reveal Animation
         const revealElements = document.querySelectorAll('.group');
         revealElements.forEach(el => {
@@ -870,7 +1310,64 @@ $socialLinks = [
                 el.querySelector('.h-[1px]')?.classList.remove('w-0');
                 el.querySelector('.h-[1px]')?.classList.add('w-full');
             });
+});
+        
+        // Projects Drop Animation on Scroll
+        const projectCards = document.querySelectorAll('.project-card-wrapper');
+        
+        const projectObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    entry.target.classList.add('dropped');
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        projectCards.forEach(card => {
+            card.style.animationPlayState = 'paused';
+            projectObserver.observe(card);
         });
+
+        // Enhanced Scroll Animations
+        const scrollObserverOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, scrollObserverOptions);
+
+        document.querySelectorAll('.reveal-text').forEach(el => scrollObserver.observe(el));
+
+        // Image Reveal on Scroll
+        const imageObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, {
+            threshold: 0.2
+        });
+
+        document.querySelectorAll('.image-reveal').forEach(el => imageObserver.observe(el));
+
+        // Trigger initial reveal if already in view
+        setTimeout(() => {
+            document.querySelectorAll('.image-reveal').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.classList.add('revealed');
+                }
+            });
+        }, 500);
     </script>
 </body>
+
 </html>
