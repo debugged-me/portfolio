@@ -93,7 +93,7 @@ $socialLinks = [
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CLARKODER</title>
+    <title>CLARkODER</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232979FF'/><text x='50' y='68' font-size='50' text-anchor='middle' fill='white' font-family='system-ui'>&lt;/&gt;</text></svg>">
 
     <!-- Fonts -->
@@ -175,6 +175,16 @@ $socialLinks = [
 
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Pause animations on hover */
+        .hover\:pause:hover * {
+            animation-play-state: paused !important;
+        }
+
+        .hover-pause:hover,
+        .hover-pause:hover * {
+            animation-play-state: paused !important;
         }
 
         /* Text Reveal Animation */
@@ -308,45 +318,47 @@ $socialLinks = [
             }
         }
 
-/* Projects Grid with Drop Animation */
+        /* Projects Grid with Drop Animation */
         .projects-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 2rem;
         }
-        
+
         @media (min-width: 768px) {
             .projects-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
-        
+
         .project-card-wrapper {
             animation: dropIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
             animation-delay: var(--delay, 0s);
             opacity: 0;
             transform: translateY(-100px);
         }
-        
+
         @keyframes dropIn {
             0% {
                 opacity: 0;
                 transform: translateY(-100px) scale(0.8);
             }
+
             60% {
                 opacity: 1;
                 transform: translateY(10px) scale(1.02);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0) scale(1);
             }
         }
-        
+
         .project-card {
             transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1), box-shadow 0.5s ease;
         }
-        
+
         /* Animate on scroll */
         .animate-drop {
             display: inline-block;
@@ -354,25 +366,64 @@ $socialLinks = [
             opacity: 0;
             transform: translateY(-50px);
         }
-        
+
         @keyframes dropText {
             0% {
                 opacity: 0;
                 transform: translateY(-50px);
             }
+
             100% {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
+        .animate-widget-drop {
+            display: inline-block;
+            animation: widgetFall 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            opacity: 0;
+        }
+
+        @keyframes widgetFall {
+            0% {
+                opacity: 0;
+                transform: translateY(-150px) rotate(-10deg);
+            }
+
+            40% {
+                opacity: 1;
+                transform: translateY(10px) rotate(3deg);
+            }
+
+            60% {
+                transform: translateY(-5px) rotate(-1deg);
+            }
+
+            80% {
+                transform: translateY(2px) rotate(0.5deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
         .animate-bounce {
             animation: bounce 0.5s ease;
         }
-        
+
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         /* Enhanced Card Hover Effects */
@@ -587,6 +638,104 @@ $socialLinks = [
             transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .ripple:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Enhanced Nav Links */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2979FF;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+        }
+
+        /* Interactive Card Hover Glow */
+        .glow-card {
+            transition: box-shadow 0.4s ease;
+        }
+
+        .glow-card:hover {
+            box-shadow: 0 0 30px rgba(41, 121, 255, 0.2), 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Skill Card Interactive */
+        .skill-card {
+            transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(41, 121, 255, 0.05);
+        }
+
+        .skill-card:hover .material-symbols-outlined {
+            transform: scale(1.2);
+        }
+
+        /* Interactive Project Card */
+        .project-card-interactive {
+            transition: all 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .project-card-interactive:hover {
+            transform: translateY(-10px) scale(1.01);
+        }
+
+        /* Section Active Indicator */
+        .section-dot {
+            width: 6px;
+            height: 6px;
+            background: #2979FF;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            animation: dotPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+        }
+
         /* Skew Hover Effect */
         .skew-hover {
             transition: transform 0.3s ease;
@@ -699,24 +848,63 @@ $socialLinks = [
             transform-style: preserve-3d;
             perspective: 1000px;
         }
-        
-        /* Flip animation utilities */
+
+        /* Animation utilities - FIXED no flip transforms */
         .perspective-500 {
             perspective: 500px;
             transform-style: preserve-3d;
         }
-        
+
         .rotate-x-180 {
             transform: rotateX(180deg);
         }
-        
+
         .scale-y-\[-1\] {
             transform: scaleY(-1);
         }
-        
+
         .transform-style-preserve-3d {
             transform-style: preserve-3d;
         }
+
+        /* Slide up animation - FIXED */
+        @keyframes slideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        /* Scroll-triggered animation that re-triggers */
+        @keyframes slideUpReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .slide-reveal.active {
+            animation: slideUpReveal 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        /* Flip animations removed - were causing text flip issues */
 
         /* Gradient text */
         .gradient-text {
@@ -725,16 +913,206 @@ $socialLinks = [
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
+        /* Auto-flip animation (scroll-triggered) - FIXED to not flip text incorrectly */
+        .auto-flip {
+            display: inline-block;
+            opacity: 0;
+            transform-origin: center;
+            transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.5s ease;
+        }
+
+        .auto-flip.flipped-x {
+            opacity: 1;
+            transform: rotateX(0deg);
+        }
+
+        .auto-flip.flipped-y {
+            opacity: 1;
+            transform: rotateY(0deg);
+        }
+
+        .auto-flip-card {
+            perspective: 500px;
+        }
+
+        /* Widget drop animation - more natural falling */
+        @keyframes widgetDrop {
+            0% {
+                opacity: 0;
+                transform: translateY(-200px) rotate(0deg);
+            }
+
+            60% {
+                opacity: 1;
+                transform: translateY(15px) rotate(2deg);
+            }
+
+            80% {
+                transform: translateY(-5px) rotate(-1deg);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .project-card-wrapper {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        .project-card-wrapper.animated {
+            animation: widgetDrop 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+            animation-delay: var(--delay, 0s);
+        }
+
+        /* Particle cursor system */
+        .cursor-particle {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: screen;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: #2979FF;
+        }
+
+        .cursor-trail {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #2979FF;
+            animation: trailFade 1s ease-out forwards;
+        }
+
+        .cursor-core {
+            width: 6px;
+            height: 6px;
+            background: #00D4AA;
+        }
+
+        @keyframes trailFade {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        /* Background particle effect */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bg-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #2979FF;
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: particleFloat 15s ease-in-out infinite;
+        }
+
+        @keyframes particleFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-40px) translateX(25px) rotate(90deg);
+            }
+
+            50% {
+                transform: translateY(-80px) translateX(-15px) rotate(180deg);
+            }
+
+            75% {
+                transform: translateY(-40px) translateX(-30px) rotate(270deg);
+            }
+        }
+
+        @keyframes geoFloat {
+            0%, 100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(30px, -40px) rotate(45deg);
+            }
+            50% {
+                transform: translate(-20px, -80px) rotate(90deg);
+            }
+            75% {
+                transform: translate(-40px, -40px) rotate(135deg);
+            }
+        }
+
+        /* Dynamic reaction on mouse movement */
+        .hover-react {
+            transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        /* Flip auto without hover - FIXED to start from correct position */
+        @keyframes flipInX {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0deg);
+            }
+        }
+
+        @keyframes flipInY {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0deg);
+            }
+        }
     </style>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%232979FF'/><text x='50' y='65' font-size='50' text-anchor='middle' fill='white' font-family='monospace'>&lt;/&gt;</text></svg>">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
 </head>
 
 <body class="bg-surface text-on-surface font-sans antialiased selection:bg-primary selection:text-white transition-colors duration-500">
 
-    <!-- Cursor Glow -->
-    <div class="cursor-glow hidden lg:block" id="cursorGlow"></div>
+    <!-- Enhanced Cursor Glow -->
+    <div class="cursor-glow hidden lg:block" id="cursorGlow" style="position: fixed; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(41, 121, 255, 0.12) 0%, transparent 70%); pointer-events: none; z-index: 9998; transform: translate(-50%, -50%); transition: opacity 0.3s ease;"></div>
+
+    <!-- Custom Cursor Follower -->
+    <div class="cursor-follower hidden lg:block" id="cursorFollower" style="position: fixed; width: 20px; height: 20px; border: 2px solid #2979FF; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: transform 0.15s ease, opacity 0.3s ease;"></div>
+
+    <!-- Custom Cursor Dot -->
+    <div class="cursor-dot-custom hidden lg:block" id="cursorDot" style="position: fixed; width: 8px; height: 8px; background: #00D4AA; border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%);"></div>
+
+    <!-- Background Particles -->
+    <div class="bg-particles" id="bgParticles"></div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-[100] bg-white/90 dark:bg-[#0a0b0d]/90 backdrop-blur-md border-b border-gray-200 dark:border-[#27273a] transition-colors duration-500">
@@ -749,7 +1127,7 @@ $socialLinks = [
             <!-- Desktop Nav -->
             <div class="hidden md:flex items-center gap-8 lg:gap-12">
                 <?php foreach ($navItems as $item): ?>
-                    <a href="#<?php echo $item['id']; ?>" class="text-xs font-bold tracking-[0.2em] uppercase group">
+                    <a href="#<?php echo $item['id']; ?>" class="text-xs font-bold tracking-[0.2em] uppercase group nav-link">
                         <span class="text-reveal text-on-surface-variant hover:text-primary transition-colors"><?php echo $item['label']; ?></span>
                     </a>
                 <?php endforeach; ?>
@@ -790,7 +1168,7 @@ $socialLinks = [
             <div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-primary to-transparent animate-scan z-10 opacity-60"></div>
 
             <!-- Floating Geometric Elements -->
-            <div class="absolute right-10 top-1/4 opacity-10 pointer-events-none hidden xl:block">
+            <div class="absolute right-10 top-1/4 opacity-10 pointer-events-none hidden xl:block hover-pause">
                 <svg width="300" height="300" viewBox="0 0 100 100" class="animate-spin-slow">
                     <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-dasharray="2,2" stroke-width="0.5" />
                     <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="0.2" />
@@ -799,7 +1177,7 @@ $socialLinks = [
                 </svg>
             </div>
 
-            <div class="absolute left-20 bottom-20 opacity-10 pointer-events-none hidden xl:block">
+            <div class="absolute left-20 bottom-20 opacity-10 pointer-events-none hidden xl:block hover-pause">
                 <div class="w-40 h-40 border border-current rounded-full animate-pulse-slow"></div>
             </div>
 
@@ -822,14 +1200,14 @@ $socialLinks = [
 
                     <!-- Main Title -->
                     <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-[8rem] font-bold leading-[0.85] tracking-tighter mb-8 md:mb-12">
-                        <span class="block overflow-hidden group">
-                            <span class="inline-block animate-slide-up group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500 transform-style-preserve-3d perspective">CLARK</span>
+                        <span class="block overflow-hidden">
+                            <span class="inline-block animate-slide-up hover-lift inline-block">CLARK</span>
                         </span>
-                        <span class="block overflow-hidden group">
-                            <span class="inline-block animate-slide-up group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500" style="animation-delay: 0.1s">STEVEN</span>
+                        <span class="block overflow-hidden">
+                            <span class="inline-block animate-slide-up hover-lift inline-block" style="animation-delay: 0.1s">STEVEN</span>
                         </span>
-                        <span class="block overflow-hidden gradient-text group">
-                            <span class="inline-block animate-slide-up group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500" style="animation-delay: 0.2s">EDONG.</span>
+                        <span class="block overflow-hidden gradient-text">
+                            <span class="inline-block animate-slide-up hover-lift inline-block" style="animation-delay: 0.2s">EDONG.</span>
                         </span>
                     </h1>
 
@@ -886,106 +1264,106 @@ $socialLinks = [
         <section class="py-24 md:py-32 bg-on-surface text-white" id="manifest">
             <div class="max-w-[1440px] mx-auto px-6 md:px-16">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-                    <div class="space-y-4 group perspective-500">
-                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">01 / Identity</span>
-                        <h3 class="text-2xl md:text-3xl font-light group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500"><?php echo $config['name']; ?></h3>
+                    <div class="space-y-4 group">
+                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block group-hover:text-primary transition-colors duration-300">01 / Identity</span>
+                        <h3 class="text-2xl md:text-3xl font-light group-hover:translate-x-2 transition-all duration-300"><?php echo $config['name']; ?></h3>
                         <div class="h-[1px] w-0 bg-primary group-hover:w-full transition-all duration-700"></div>
                     </div>
-                    <div class="space-y-4 group perspective-500">
-                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">02 / Age Units</span>
-                        <h3 class="text-2xl md:text-3xl font-light group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500"><?php echo $config['age']; ?> Years</h3>
+                    <div class="space-y-4 group">
+                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block group-hover:text-teal transition-colors duration-300">02 / Age Units</span>
+                        <h3 class="text-2xl md:text-3xl font-light group-hover:translate-x-2 transition-all duration-300"><?php echo $config['age']; ?> Years</h3>
                         <div class="h-[1px] w-0 bg-teal group-hover:w-full transition-all duration-700"></div>
                     </div>
-                    <div class="space-y-4 group perspective-500">
-                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">03 / Coordinates</span>
-                        <h3 class="text-2xl md:text-3xl font-light leading-snug group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500"><?php echo $config['location']; ?>,<br><?php echo $config['postal']; ?></h3>
+                    <div class="space-y-4 group">
+                        <span class="text-[10px] tracking-[0.5em] uppercase opacity-40 block group-hover:text-orange transition-colors duration-300">03 / Coordinates</span>
+                        <h3 class="text-2xl md:text-3xl font-light leading-snug group-hover:translate-x-2 transition-all duration-300"><?php echo $config['location']; ?>,<br><?php echo $config['postal']; ?></h3>
                         <div class="h-[1px] w-0 bg-orange group-hover:w-full transition-all duration-700"></div>
                     </div>
                 </div>
 
                 <!-- Additional Stats -->
                 <div class="mt-20 pt-12 border-t border-white/10 grid grid-cols-2 md:grid-cols-4 gap-8">
-                    <div class="text-center group perspective-500 cursor-pointer">
-                        <span class="text-4xl md:text-5xl font-bold text-primary block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">50+</span>
-                        <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60">Deployments</p>
+                    <div class="text-center group cursor-pointer">
+                        <span class="text-4xl md:text-5xl font-bold text-primary block group-hover:scale-125 group-hover:text-teal transition-all duration-300">50+</span>
+                        <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60 group-hover:opacity-100 transition-opacity">Deployments</p>
                     </div>
-                    <div class="text-center group perspective-500 cursor-pointer">
-                        <span class="text-4xl md:text-5xl font-bold text-teal block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">6+</span>
-                        <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60">Years Active</p>
+                    <div class="text-center group cursor-pointer">
+                        <span class="text-4xl md:text-5xl font-bold text-teal block group-hover:scale-125 group-hover:text-orange transition-all duration-300">6+</span>
+                        <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60 group-hover:opacity-100 transition-opacity">Years Active</p>
                     </div>
-                    <div class="text-center group perspective-500 cursor-pointer">
-                        <span class="text-4xl md:text-5xl font-bold text-orange block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">30+</span>
-                        <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60">Clients Served</p>
+                    <div class="text-center group cursor-pointer">
+                        <span class="text-4xl md:text-5xl font-bold text-orange block group-hover:scale-125 group-hover:text-purple transition-all duration-300">30+</span>
+                        <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60 group-hover:opacity-100 transition-opacity">Clients Served</p>
                     </div>
-                    <div class="text-center group perspective-500 cursor-pointer">
-                        <span class="text-4xl md:text-5xl font-bold text-purple block group-hover:rotate-x-180 group-hover:scale-y-[-1] transition-all duration-500">100%</span>
-                        <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60">Availability</p>
+                    <div class="text-center group cursor-pointer">
+                        <span class="text-4xl md:text-5xl font-bold text-purple block group-hover:scale-125 group-hover:text-primary transition-all duration-300">100%</span>
+                        <p class="text-xs tracking-[0.3em] uppercase mt-2 opacity-60 group-hover:opacity-100 transition-opacity">Availability</p>
                     </div>
                 </div>
             </div>
         </section>
 
-<!-- Archive / Projects Section -->
+        <!-- Archive / Projects Section -->
         <section class="py-24 md:py-40" id="archive">
             <div class="max-w-[1440px] mx-auto px-6 md:px-16">
                 <!-- Section Header -->
                 <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 md:mb-24 border-b border-gray-200 dark:border-[#27273a] pb-8 md:pb-12">
-                    <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase mb-6 md:mb-0 group">
-                        <span class="block animate-drop hover:animate-bounce">The</span>
-                        <span class="block animate-drop hover:animate-bounce" style="animation-delay: 0.1s">Archive</span>
+                    <h2 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase mb-6 md:mb-0">
+                        <span class="block animate-widget-drop">The</span>
+                        <span class="block animate-widget-drop" style="animation-delay: 0.15s">Archive</span>
                     </h2>
                     <p class="max-w-xs text-on-surface-variant text-sm font-medium leading-relaxed">
                         Selected works from the laboratory. Rigorous examination of patterns and technical architecture.
                     </p>
                 </div>
 
-                <!-- Projects Grid with Drop Animation -->
+                <!-- Projects Grid with Enhanced Transitions -->
                 <div class="projects-grid">
                     <?php foreach ($projects as $index => $project): ?>
-                    <div class="project-card-wrapper group" style="--delay: <?php echo $index * 0.15; ?>s;">
-                        <div class="project-card bg-surface-dim rounded-xl overflow-hidden cursor-pointer group-hover:-translate-y-2 transition-all duration-500 shadow-lg hover:shadow-xl">
-                            <div class="project-card-image aspect-video relative overflow-hidden">
-                                <img
-                                    src="<?php echo $project['image']; ?>"
-                                    alt="<?php echo $project['title']; ?>"
-                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                                
-                                <!-- Floating Tech Stack Tags -->
-                                <div class="absolute top-4 left-4 flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-y-2 group-hover:translate-y-0">
-                                    <span class="text-[10px] font-bold tracking-widest uppercase bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">React</span>
-                                    <span class="text-[10px] font-bold tracking-widest uppercase bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">Node.js</span>
+                        <div class="project-card-wrapper group" style="--delay: <?php echo $index * 0.15; ?>s;">
+                            <div class="project-card project-card-interactive bg-surface-dim rounded-xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-500">
+                                <div class="project-card-image aspect-video relative overflow-hidden">
+                                    <img
+                                        src="<?php echo $project['image']; ?>"
+                                        alt="<?php echo $project['title']; ?>"
+                                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                                    <!-- Floating Tech Stack Tags -->
+                                    <div class="absolute top-4 left-4 flex flex-wrap gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform -translate-y-2 group-hover:translate-y-0">
+                                        <span class="text-[10px] font-bold tracking-widest uppercase bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">React</span>
+                                        <span class="text-[10px] font-bold tracking-widest uppercase bg-black/50 text-white px-3 py-1 rounded-full backdrop-blur-sm">Node.js</span>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <!-- Card Content -->
-                            <div class="p-6 md:p-8 relative">
-                                <!-- Card number badge -->
-                                <div class="absolute -top-5 left-6 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg transform group-hover:scale-110 transition-transform duration-300">
-                                    <?php echo str_pad($index + 1, 2, '0', STR_PAD_LEFT); ?>
-                                </div>
-                                
-                                <span class="text-xs font-bold tracking-[0.3em] uppercase text-<?php echo $project['accent']; ?> mb-3 block"><?php echo $project['subtitle']; ?></span>
-                                <h3 class="text-2xl md:text-3xl font-bold mb-3 tracking-tight group-hover:text-primary transition-colors"><?php echo $project['title']; ?></h3>
-                                <p class="text-on-surface-variant leading-relaxed text-sm md:text-base">
-                                    <?php echo $project['desc']; ?>
-                                </p>
-                                
-                                <!-- Tech Pills -->
-                                <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-200 dark:border-[#27273a]">
-                                    <span class="text-[10px] font-bold tracking-wider uppercase bg-gray-100 dark:bg-[#27273a] px-3 py-1 rounded">JavaScript</span>
-                                    <span class="text-[10px] font-bold tracking-wider uppercase bg-gray-100 dark:bg-[#27273a] px-3 py-1 rounded">PostgreSQL</span>
-                                    <span class="text-[10px] font-bold tracking-wider uppercase bg-gray-100 dark:bg-[#27273a] px-3 py-1 rounded">AWS</span>
-                                </div>
-                                
-                                <!-- Action buttons -->
-                                <div class="flex gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                                    <a href="#" class="flex-1 py-3 text-center text-xs font-bold tracking-widest uppercase bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">View</a>
-                                    <a href="#" class="flex-1 py-3 text-center text-xs font-bold tracking-widest uppercase border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-[#27273a] transition-colors">Code</a>
+
+                                <!-- Card Content -->
+                                <div class="p-6 md:p-8 relative">
+                                    <!-- Card number badge -->
+                                    <div class="absolute -top-5 left-6 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                                        <?php echo str_pad($index + 1, 2, '0', STR_PAD_LEFT); ?>
+                                    </div>
+
+                                    <span class="text-xs font-bold tracking-[0.3em] uppercase text-<?php echo $project['accent']; ?> mb-3 block"><?php echo $project['subtitle']; ?></span>
+                                    <h3 class="text-2xl md:text-3xl font-bold mb-3 tracking-tight group-hover:text-primary transition-colors"><?php echo $project['title']; ?></h3>
+                                    <p class="text-on-surface-variant leading-relaxed text-sm md:text-base">
+                                        <?php echo $project['desc']; ?>
+                                    </p>
+
+                                    <!-- Tech Pills -->
+                                    <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-200 dark:border-[#27273a]">
+                                        <span class="text-[10px] font-bold tracking-wider uppercase bg-gray-100 dark:bg-[#27273a] px-3 py-1 rounded">JavaScript</span>
+                                        <span class="text-[10px] font-bold tracking-wider uppercase bg-gray-100 dark:bg-[#27273a] px-3 py-1 rounded">PostgreSQL</span>
+                                        <span class="text-[10px] font-bold tracking-wider uppercase bg-gray-100 dark:bg-[#27273a] px-3 py-1 rounded">AWS</span>
+                                    </div>
+
+                                    <!-- Action buttons -->
+                                    <div class="flex gap-3 mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                                        <a href="#" class="flex-1 py-3 text-center text-xs font-bold tracking-widest uppercase bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors">View</a>
+                                        <a href="#" class="flex-1 py-3 text-center text-xs font-bold tracking-widest uppercase border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-100 dark:hover:bg-[#27273a] transition-colors">Code</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>
@@ -1055,13 +1433,14 @@ $socialLinks = [
             </div>
         </section>
 
-        <!-- Contact / Transmit Section -->
+<!-- Contact / Transmit Section -->
         <section class="py-24 md:py-40" id="transmit">
             <div class="max-w-[1440px] mx-auto px-6 md:px-16 grid grid-cols-12 gap-8 md:gap-16">
                 <div class="col-span-12 lg:col-span-5">
                     <span class="text-xs font-bold tracking-[0.3em] uppercase text-primary mb-4 block">05 / Transmit</span>
-                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase mb-6 md:mb-12">
-                        Initiate<br>Inquiry
+                    <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase mb-6 md:mb-12 group">
+                        <span class="block group-hover:-translate-y-1 transition-transform duration-300">Initiate</span>
+                        <span class="block group-hover:translate-x-2 transition-transform duration-300">Inquiry</span>
                     </h2>
                     <p class="text-lg md:text-xl font-light text-on-surface-variant mb-8 md:mb-16 leading-relaxed">
                         Available for senior partnerships and strategic consulting. Ready to define the next iteration.
@@ -1070,7 +1449,7 @@ $socialLinks = [
                     <!-- Social Links -->
                     <div class="space-y-4 md:space-y-6">
                         <?php foreach ($socialLinks as $link): ?>
-                            <a href="<?php echo $link['url']; ?>" class="group flex items-center justify-between border-b border-gray-200 dark:border-[#27273a] pb-3 md:pb-4">
+                        <a href="<?php echo $link['url']; ?>" class="group flex items-center justify-between border-b border-gray-200 dark:border-[#27273a] pb-3 md:pb-4 hover:bg-gray-50 dark:hover:bg-[#1a1c22] transition-colors rounded-lg px-4 -mx-4">
                                 <span class="text-xs font-bold tracking-[0.3em] uppercase group-hover:text-primary transition-colors flex items-center gap-3">
                                     <span class="material-symbols-outlined text-lg"><?php echo $link['icon']; ?></span>
                                     <?php echo $link['label']; ?>
@@ -1172,57 +1551,175 @@ $socialLinks = [
         document.querySelectorAll('.mobile-link').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
-});
+            });
         });
 
-        // Custom Cursor (Desktop only)
-        const cursorDot = document.createElement('div');
-        cursorDot.style.cssText = 'position:fixed;width:12px;height:12px;background:#2979FF;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:opacity 0.2s;';
-        document.body.appendChild(cursorDot);
-        
-        const cursorRing = document.createElement('div');
-        cursorRing.style.cssText = 'position:fixed;width:40px;height:40px;border:1px solid #2979FF;border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.15s ease-out,opacity 0.2s;';
-        document.body.appendChild(cursorRing);
-        
-        let cursorX = 0, cursorY = 0;
-        let ringX = 0, ringY = 0;
-        
+        // Custom Cursor with Particles (Desktop only)
         if (window.matchMedia('(pointer: fine)').matches) {
+            const particles = [];
+            const maxParticles = 15;
+            let cursorX = 0,
+                cursorY = 0;
+            let lastX = 0,
+                lastY = 0;
+            let mouseSpeed = 0;
+
+            // Create cursor particles
+            for (let i = 0; i < maxParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'cursor-particle';
+
+                if (i === 0) {
+                    particle.classList.add('cursor-core');
+                } else {
+                    particle.classList.add('cursor-trail');
+                    particle.style.animationDelay = `${i * 0.05}s`;
+                }
+
+                particle.style.left = '-100px';
+                particle.style.top = '-100px';
+                document.body.appendChild(particle);
+
+                particles.push({
+                    element: particle,
+                    x: -100,
+                    y: -100,
+                    vx: 0,
+                    vy: 0
+                });
+            }
+
             document.addEventListener('mousemove', (e) => {
                 cursorX = e.clientX;
                 cursorY = e.clientY;
-                
+
+                // Calculate mouse speed
+                const dx = cursorX - lastX;
+                const dy = cursorY - lastY;
+                mouseSpeed = Math.sqrt(dx * dx + dy * dy);
+                lastX = cursorX;
+                lastY = cursorY;
+
                 if (cursorGlow) {
                     cursorGlow.style.left = cursorX + 'px';
                     cursorGlow.style.top = cursorY + 'px';
+                    cursorGlow.style.opacity = mouseSpeed > 50 ? '0' : '1';
+                }
+
+                // Update custom cursor elements
+                const cursorFollower = document.getElementById('cursorFollower');
+                const cursorDot = document.getElementById('cursorDot');
+                if (cursorFollower) {
+                    cursorFollower.style.left = cursorX + 'px';
+                    cursorFollower.style.top = cursorY + 'px';
+                    // Scale based on speed
+                    const scale = 1 + Math.min(mouseSpeed / 100, 0.5);
+                    cursorFollower.style.transform = `translate(-50%, -50%) scale(${scale})`;
+                }
+                if (cursorDot) {
+                    cursorDot.style.left = cursorX + 'px';
+                    cursorDot.style.top = cursorY + 'px';
                 }
             });
-            
-            function animateCursor() {
-                cursorDot.style.left = cursorX + 'px';
-                cursorDot.style.top = cursorY + 'px';
-                
-                ringX += (cursorX - ringX) * 0.15;
-                ringY += (cursorY - ringY) * 0.15;
-                cursorRing.style.left = ringX + 'px';
-                cursorRing.style.top = ringY + 'px';
-                
-                requestAnimationFrame(animateCursor);
+
+            function animateParticles() {
+                particles.forEach((p, i) => {
+                    const delay = i * 0.08;
+
+                    if (i === 0) {
+                        p.x += (cursorX - p.x) * 0.5;
+                        p.y += (cursorY - p.y) * 0.5;
+                    } else {
+                        const targetX = particles[0].x - (i * 3);
+                        const targetY = particles[0].y - (i * 3);
+                        p.x += (targetX - p.x) * 0.15;
+                        p.y += (targetY - p.y) * 0.15;
+                    }
+
+                    p.element.style.left = p.x + 'px';
+                    p.element.style.top = p.y + 'px';
+                });
+
+                requestAnimationFrame(animateParticles);
             }
-            animateCursor();
-            
+            animateParticles();
+
             document.addEventListener('mouseleave', () => {
-                cursorDot.style.opacity = '0';
-                cursorRing.style.opacity = '0';
+                particles.forEach(p => {
+                    p.element.style.opacity = '0';
+                });
             });
-            
+
             document.addEventListener('mouseenter', () => {
-                cursorDot.style.opacity = '1';
-                cursorRing.style.opacity = '1';
+                particles.forEach(p => {
+p.element.style.opacity = '';
+                });
             });
         }
+        
+        // Enhanced Background particles with geometric shapes
+        const bgParticles = document.getElementById('bgParticles');
+        const particleCount = 30;
 
-        // Terminal Command Rotator
+        if (bgParticles) {
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                const size = Math.random() * 4 + 2;
+                const isGeo = Math.random() > 0.7;
+                
+                particle.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    opacity: ${Math.random() * 0.2 + 0.05};
+                    animation: particleFloat ${15 + Math.random() * 20}s ease-in-out ${Math.random() * 10}s infinite;
+                    pointer-events: none;
+                `;
+                
+                if (isGeo) {
+                    // Geometric shapes (squares, triangles)
+                    if (Math.random() > 0.5) {
+                        particle.style.border = `1px solid rgba(41, 121, 255, ${Math.random() * 0.3})`;
+                        particle.style.borderRadius = '0';
+                    } else {
+                        // Triangle using CSS
+                        particle.style.width = '0';
+                        particle.style.height = '0';
+                        particle.style.borderLeft = `${size/2}px solid transparent`;
+                        particle.style.borderRight = `${size/2}px solid transparent`;
+                        particle.style.borderBottom = `${size}px solid rgba(0, 212, 170, ${Math.random() * 0.2})`;
+                        particle.style.background = 'transparent';
+                    }
+                } else {
+                    particle.style.background = Math.random() > 0.5 ? 'rgba(41, 121, 255, 0.3)' : 'rgba(0, 212, 170, 0.3)';
+                    particle.style.borderRadius = '50%';
+                }
+                
+                bgParticles.appendChild(particle);
+            }
+
+            // Add floating geometric shapes
+            for (let i = 0; i < 5; i++) {
+                const geo = document.createElement('div');
+                const size = 30 + Math.random() * 50;
+                geo.style.cssText = `
+                    position: absolute;
+                    width: ${size}px;
+                    height: ${size}px;
+                    left: ${Math.random() * 100}%;
+                    top: ${Math.random() * 100}%;
+                    border: 1px solid rgba(41, 121, 255, 0.1);
+                    border-radius: ${Math.random() > 0.5 ? '50%' : '0'};
+                    animation: geoFloat ${20 + Math.random() * 15}s ease-in-out infinite;
+                    pointer-events: none;
+                `;
+                bgParticles.appendChild(geo);
+            }
+        }
+
+// Terminal Command Rotator
         const commands = ['whoami', 'ls -la /projects', 'git status', 'npm run build', 'docker ps', 'ssh deploy@production'];
         let cmdIndex = 0;
         const terminalCommand = document.getElementById('terminalCommand');
@@ -1279,6 +1776,32 @@ $socialLinks = [
             });
         });
 
+        // Active Section Highlighting
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveNav() {
+            const scrollPos = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+
+                if (scrollPos >= top && scrollPos < top + height) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav();
+
         // Form Submission
         const contactForm = document.getElementById('contactForm');
         if (contactForm) {
@@ -1310,23 +1833,35 @@ $socialLinks = [
                 el.querySelector('.h-[1px]')?.classList.remove('w-0');
                 el.querySelector('.h-[1px]')?.classList.add('w-full');
             });
-});
-        
-        // Projects Drop Animation on Scroll
+        });
+
+        // Projects Drop Animation on Scroll - FIXED to re-animate properly
         const projectCards = document.querySelectorAll('.project-card-wrapper');
-        
+
         const projectObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animationPlayState = 'running';
-                    entry.target.classList.add('dropped');
+                    // Remove and re-add class to re-trigger animation
+                    entry.target.classList.remove('animated');
+                    void entry.target.offsetWidth; // Force reflow
+                    entry.target.classList.add('animated');
                 }
             });
-        }, { threshold: 0.2 });
-        
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
         projectCards.forEach(card => {
-            card.style.animationPlayState = 'paused';
             projectObserver.observe(card);
+        });
+
+        // Initial check for cards already in view
+        projectCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                card.classList.add('animated');
+            }
         });
 
         // Enhanced Scroll Animations
@@ -1367,6 +1902,20 @@ $socialLinks = [
                 }
             });
         }, 500);
+
+        // Hero Title Animation - trigger on load
+        document.querySelectorAll('.animate-slide-up').forEach((el, i) => {
+            setTimeout(() => {
+                el.style.animation = 'slideUp 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards';
+            }, i * 150);
+        });
+
+        // Widget drop animation for Archive section
+        document.querySelectorAll('.animate-widget-drop').forEach((el, i) => {
+            setTimeout(() => {
+                el.style.animation = 'widgetFall 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards';
+            }, i * 150 + 300);
+        });
     </script>
 </body>
 
