@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDONG, CLARK STEVEN T. | Digital Architect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="theme-icon">◐</span>
+    </button>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <span class="nav-logo-bracket">[</span>EST<span class="nav-logo-bracket">]</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#bio" class="nav-link" data-index="01">BIO</a></li>
+                <li><a href="#works" class="nav-link" data-index="02">WORKS</a></li>
+                <li><a href="#skills" class="nav-link" data-index="03">SKILLS</a></li>
+                <li><a href="#journey" class="nav-link" data-index="04">JOURNEY</a></li>
+                <li><a href="#contact" class="nav-link" data-index="05">CONTACT</a></li>
+            </ul>
+            <button class="nav-mobile-toggle" id="navMobileToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="hero-grid"></div>
+            <div class="hero-particles" id="heroParticles"></div>
+            <div class="hero-scan-line"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-label boot-up" style="--delay: 0.1s">
+                <span class="hero-label-line"></span>
+                <span class="hero-label-text">SYSTEM.ONLINE</span>
+            </div>
+            <h1 class="hero-name">
+                <span class="hero-name-line boot-up" style="--delay: 0.2s">EDONG,</span>
+                <span class="hero-name-line boot-up" style="--delay: 0.3s">CLARK STEVEN T.</span>
+            </h1>
+            <div class="hero-title boot-up" style="--delay: 0.4s">
+                <span class="hero-title-bracket">&lt;</span>
+                Digital Architect
+                <span class="hero-title-bracket">/&gt;</span>
+            </div>
+            <p class="hero-tagline boot-up" style="--delay: 0.5s">
+                Crafting digital experiences through code and design.
+                Based in Dahican, Mati City, Philippines.
+            </p>
+            <div class="hero-actions boot-up" style="--delay: 0.6s">
+                <a href="#works" class="btn btn-primary">
+                    <span class="btn-text">VIEW_ARCHIVE</span>
+                    <span class="btn-arrow">→</span>
+                </a>
+                <a href="#contact" class="btn btn-ghost">
+                    <span class="btn-text">INITIATE_LINK</span>
+                </a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat boot-up" style="--delay: 0.7s">
+                <span class="hero-stat-value">27</span>
+                <span class="hero-stat-label">YEARS_OLD</span>
+            </div>
+            <div class="hero-stat boot-up" style="--delay: 0.8s">
+                <span class="hero-stat-value">6+</span>
+                <span class="hero-stat-label">YEARS_EXP</span>
+            </div>
+            <div class="hero-stat boot-up" style="--delay: 0.9s">
+                <span class="hero-stat-value">8200</span>
+                <span class="hero-stat-label">POSTAL_CODE</span>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span class="hero-scroll-text">SCROLL</span>
+            <div class="hero-scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Bio / System Manifest Section -->
+    <section class="bio" id="bio">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-index">01</span>
+                <h2 class="section-title">SYSTEM_MANIFEST</h2>
+            </div>
+            <div class="bio-grid">
+                <div class="bio-data">
+                    <div class="bio-data-block">
+                        <h3 class="bio-data-label">IDENTITY</h3>
+                        <div class="bio-data-content">
+                            <div class="bio-data-row">
+                                <span class="bio-data-key">FULL_NAME</span>
+                                <span class="bio-data-value">EDONG, CLARK STEVEN T.</span>
+                            </div>
+                            <div class="bio-data-row">
+                                <span class="bio-data-key">AGE</span>
+                                <span class="bio-data-value">27 YEARS</span>
+                            </div>
+                            <div class="bio-data-row">
+                                <span class="bio-data-key">LOCATION</span>
+                                <span class="bio-data-value">DAHICAN, MATI CITY</span>
+                            </div>
+                            <div class="bio-data-row">
+                                <span class="bio-data-key">COUNTRY</span>
+                                <span class="bio-data-value">PHILIPPINES, 8200</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bio-data-block">
+                        <h3 class="bio-data-label">STATUS</h3>
+                        <div class="bio-data-content">
+                            <div class="bio-status">
+                                <span class="bio-status-indicator"></span>
+                                <span class="bio-status-text">AVAILABLE_FOR_HIRE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bio-narrative">
+                    <p class="bio-text">
+                        Digital architect specializing in full-stack development and interactive experiences. 
+                        With a foundation built on clean code principles and user-centered design, I transform 
+                        complex problems into elegant digital solutions.
+                    </p>
+                    <p class="bio-text">
+                        My work bridges the gap between technical precision and creative vision, 
+                        delivering products that are both functional and visually compelling. 
+                        Based in the coastal town of Dahican, Mati City, I draw inspiration from 
+                        the intersection of nature and technology.
+                    </p>
+                    <div class="bio-tags">
+                        <span class="bio-tag">FULL_STACK</span>
+                        <span class="bio-tag">UI_ENGINEERING</span>
+                        <span class="bio-tag">SYSTEM_ARCHITECTURE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Works / Archive Section -->
+    <section class="works" id="works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-index">02</span>
+                <h2 class="section-title">THE_ARCHIVE</h2>
+            </div>
+            <div class="works-grid">
+                <!-- Project 1 -->
+                <article class="work-card" data-tilt>
+                    <div class="work-card-image">
+                        <div class="work-card-placeholder" style="--accent: #2979FF;">
+                            <div class="work-card-icon">◈</div>
+                        </div>
+                        <div class="work-card-overlay">
+                            <div class="work-card-specs">
+                                <div class="work-spec">
+                                    <span class="work-spec-label">STACK</span>
+                                    <span class="work-spec-value">React, Node.js, PostgreSQL</span>
+                                </div>
+                                <div class="work-spec">
+                                    <span class="work-spec-label">YEAR</span>
+                                    <span class="work-spec-value">2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-content">
+                        <h3 class="work-card-title">E-COMMERCE_PLATFORM_V2</h3>
+                        <p class="work-card-desc">Full-stack marketplace with real-time inventory and payment processing.</p>
+                        <div class="work-card-actions">
+                            <a href="#" class="work-link work-link-live">
+                                <span class="work-link-node"></span>
+                                LIVE_DEMO
+                            </a>
+                            <a href="#" class="work-link work-link-repo">
+                                <span class="work-link-node"></span>
+                                SOURCE_CODE
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="work-card" data-tilt>
+                    <div class="work-card-image">
+                        <div class="work-card-placeholder" style="--accent: #00D4AA;">
+                            <div class="work-card-icon">◉</div>
+                        </div>
+                        <div class="work-card-overlay">
+                            <div class="work-card-specs">
+                                <div class="work-spec">
+                                    <span class="work-spec-label">STACK</span>
+                                    <span class="work-spec-value">Next.js, TypeScript, Tailwind</span>
+                                </div>
+                                <div class="work-spec">
+                                    <span class="work-spec-label">YEAR</span>
+                                    <span class="work-spec-value">2024</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-content">
+                        <h3 class="work-card-title">ANALYTICS_DASHBOARD</h3>
+                        <p class="work-card-desc">Data visualization platform with real-time metrics and custom reporting.</p>
+                        <div class="work-card-actions">
+                            <a href="#" class="work-link work-link-live">
+                                <span class="work-link-node"></span>
+                                LIVE_DEMO
+                            </a>
+                            <a href="#" class="work-link work-link-repo">
+                                <span class="work-link-node"></span>
+                                SOURCE_CODE
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="work-card" data-tilt>
+                    <div class="work-card-image">
+                        <div class="work-card-placeholder" style="--accent: #FF6B35;">
+                            <div class="work-card-icon">◆</div>
+                        </div>
+                        <div class="work-card-overlay">
+                            <div class="work-card-specs">
+                                <div class="work-spec">
+                                    <span class="work-spec-label">STACK</span>
+                                    <span class="work-spec-value">Vue.js, Firebase, PWA</span>
+                                </div>
+                                <div class="work-spec">
+                                    <span class="work-spec-label">YEAR</span>
+                                    <span class="work-spec-value">2023</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-content">
+                        <h3 class="work-card-title">TASK_MANAGEMENT_PWA</h3>
+                        <p class="work-card-desc">Offline-first productivity app with sync capabilities and team collaboration.</p>
+                        <div class="work-card-actions">
+                            <a href="#" class="work-link work-link-live">
+                                <span class="work-link-node"></span>
+                                LIVE_DEMO
+                            </a>
+                            <a href="#" class="work-link work-link-repo">
+                                <span class="work-link-node"></span>
+                                SOURCE_CODE
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="work-card" data-tilt>
+                    <div class="work-card-image">
+                        <div class="work-card-placeholder" style="--accent: #A855F7;">
+                            <div class="work-card-icon">◇</div>
+                        </div>
+                        <div class="work-card-overlay">
+                            <div class="work-card-specs">
+                                <div class="work-spec">
+                                    <span class="work-spec-label">STACK</span>
+                                    <span class="work-spec-value">Three.js, WebGL, GSAP</span>
+                                </div>
+                                <div class="work-spec">
+                                    <span class="work-spec-label">YEAR</span>
+                                    <span class="work-spec-value">2023</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="work-card-content">
+                        <h3 class="work-card-title">INTERACTIVE_PORTFOLIO</h3>
+                        <p class="work-card-desc">Immersive 3D portfolio experience with WebGL animations and micro-interactions.</p>
+                        <div class="work-card-actions">
+                            <a href="#" class="work-link work-link-live">
+                                <span class="work-link-node"></span>
+                                LIVE_DEMO
+                            </a>
+                            <a href="#" class="work-link work-link-repo">
+                                <span class="work-link-node"></span>
+                                SOURCE_CODE
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills / System Capabilities Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-index">03</span>
+                <h2 class="section-title">SYSTEM_CAPABILITIES</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skills-category">
+                    <h3 class="skills-category-title">
+                        <span class="skills-category-icon">◈</span>
+                        CORE_ENGINE
+                    </h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">JavaScript / TypeScript</span>
+                                <span class="skill-level">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">React / Next.js</span>
+                                <span class="skill-level">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Node.js / Express</span>
+                                <span class="skill-level">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Python / Django</span>
+                                <span class="skill-level">82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 82%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3 class="skills-category-title">
+                        <span class="skills-category-icon">◉</span>
+                        INTERFACE_LAYER
+                    </h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">CSS / SCSS / Tailwind</span>
+                                <span class="skill-level">94%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 94%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">UI/UX Design</span>
+                                <span class="skill-level">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Animation / Motion</span>
+                                <span class="skill-level">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">WebGL / Three.js</span>
+                                <span class="skill-level">72%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 72%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3 class="skills-category-title">
+                        <span class="skills-category-icon">◆</span>
+                        DATA_SYSTEMS
+                    </h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">PostgreSQL / MySQL</span>
+                                <span class="skill-level">87%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 87%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">MongoDB / NoSQL</span>
+                                <span class="skill-level">83%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 83%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Redis / Caching</span>
+                                <span class="skill-level">78%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 78%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">GraphQL / REST</span>
+                                <span class="skill-level">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skills-category">
+                    <h3 class="skills-category-title">
+                        <span class="skills-category-icon">◇</span>
+                        INFRASTRUCTURE
+                    </h3>
+                    <div class="skills-list">
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Docker / Kubernetes</span>
+                                <span class="skill-level">76%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 76%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">AWS / Cloud Services</span>
+                                <span class="skill-level">81%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 81%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">CI/CD / DevOps</span>
+                                <span class="skill-level">79%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 79%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-info">
+                                <span class="skill-name">Git / Version Control</span>
+                                <span class="skill-level">93%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="--width: 93%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skills-stack">
+                <h3 class="skills-stack-title">TECHNOLOGY_MATRIX</h3>
+                <div class="stack-grid">
+                    <span class="stack-item">React</span>
+                    <span class="stack-item">Next.js</span>
+                    <span class="stack-item">Vue.js</span>
+                    <span class="stack-item">Node.js</span>
+                    <span class="stack-item">TypeScript</span>
+                    <span class="stack-item">Python</span>
+                    <span class="stack-item">PostgreSQL</span>
+                    <span class="stack-item">MongoDB</span>
+                    <span class="stack-item">Redis</span>
+                    <span class="stack-item">Docker</span>
+                    <span class="stack-item">AWS</span>
+                    <span class="stack-item">Git</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline / Journey Section -->
+    <section class="journey" id="journey">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-index">04</span>
+                <h2 class="section-title">THE_JOURNEY</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item" data-year="2024">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2024</span>
+                        <h3 class="timeline-title">SENIOR_FULL_STACK_ENGINEER</h3>
+                        <p class="timeline-desc">Leading development teams and architecting scalable solutions for enterprise clients.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Leadership</span>
+                            <span class="timeline-tag">Architecture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-year="2022">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2022</span>
+                        <h3 class="timeline-title">FULL_STACK_DEVELOPER</h3>
+                        <p class="timeline-desc">Building end-to-end applications with modern JavaScript frameworks and cloud infrastructure.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Full Stack</span>
+                            <span class="timeline-tag">Cloud</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-year="2020">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2020</span>
+                        <h3 class="timeline-title">FRONTEND_SPECIALIST</h3>
+                        <p class="timeline-desc">Focused on creating responsive, animated interfaces and interactive user experiences.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">UI/UX</span>
+                            <span class="timeline-tag">Animation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-year="2019">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2019</span>
+                        <h3 class="timeline-title">JUNIOR_WEB_DEVELOPER</h3>
+                        <p class="timeline-desc">Started professional journey building websites and learning modern web technologies.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Learning</span>
+                            <span class="timeline-tag">Growth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-year="2018">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2018</span>
+                        <h3 class="timeline-title">SYSTEM_BOOT_SEQUENCE_INIT</h3>
+                        <p class="timeline-desc">Began coding journey. First lines of HTML, CSS, and JavaScript written.</p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Origin</span>
+                            <span class="timeline-tag">Foundation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Initiate Link Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-index">05</span>
+                <h2 class="section-title">INITIATE_LINK</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">IDENTIFIER</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="ENTER_YOUR_NAME" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email">COMM_CHANNEL</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="ENTER_EMAIL_ADDRESS" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="subject">MESSAGE_TYPE</label>
+                            <select id="subject" name="subject" class="form-select">
+                                <option value="project">PROJECT_COLLABORATION</option>
+                                <option value="hire">HIRING_OPPORTUNITY</option>
+                                <option value="consult">CONSULTATION</option>
+                                <option value="other">OTHER_INQUIRY</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message">DATA_PACKET</label>
+                            <textarea id="message" name="message" class="form-textarea" placeholder="ENTER_MESSAGE_CONTENT" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            <span class="btn-text">TRANSMIT_MESSAGE</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </form>
+                </div>
+
+                <div class="contact-network">
+                    <h3 class="contact-network-title">NETWORK_NODES</h3>
+                    <div class="network-nodes">
+                        <a href="mailto:clark.edong@example.com" class="network-node">
+                            <span class="network-node-icon">✉</span>
+                            <div class="network-node-info">
+                                <span class="network-node-label">EMAIL_DIRECT</span>
+                                <span class="network-node-value">clark.edong@example.com</span>
+                            </div>
+                        </a>
+                        <a href="https://github.com" target="_blank" rel="noopener" class="network-node">
+                            <span class="network-node-icon">◈</span>
+                            <div class="network-node-info">
+                                <span class="network-node-label">GITHUB_REPO</span>
+                                <span class="network-node-value">github.com/clark-edong</span>
+                            </div>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener" class="network-node">
+                            <span class="network-node-icon">◉</span>
+                            <div class="network-node-info">
+                                <span class="network-node-label">LINKEDIN_NET</span>
+                                <span class="network-node-value">linkedin.com/in/clark-edong</span>
+                            </div>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener" class="network-node">
+                            <span class="network-node-icon">◇</span>
+                            <div class="network-node-info">
+                                <span class="network-node-label">TWITTER_FEED</span>
+                                <span class="network-node-value">@clark_edong</span>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="contact-location">
+                        <h4 class="contact-location-title">PHYSICAL_COORDINATES</h4>
+                        <div class="location-data">
+                            <div class="location-row">
+                                <span class="location-key">LAT_LONG</span>
+                                <span class="location-value">6.9558° N, 126.2165° E</span>
+                            </div>
+                            <div class="location-row">
+                                <span class="location-key">ADDRESS</span>
+                                <span class="location-value">DAHICAN, MATI CITY</span>
+                            </div>
+                            <div class="location-row">
+                                <span class="location-key">REGION</span>
+                                <span class="location-value">DAVAO ORIENTAL, PH</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <span class="footer-logo">[EST]</span>
+                    <span class="footer-tagline">DIGITAL_ARCHITECT</span>
+                </div>
+                <div class="footer-meta">
+                    <span class="footer-version">v2.0.24</span>
+                    <span class="footer-status">SYSTEM_ONLINE</span>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copy">
+                    © 2024 EDONG, CLARK STEVEN T. // MATI CITY, PHILIPPINES 8200
+                </p>
+                <p class="footer-id">
+                    ID: EST-27-PH-8200 // ALL_SYSTEMS_NOMINAL
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
