@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Contact Form Handler
  * EDONG, CLARK STEVEN T. Portfolio
@@ -12,7 +13,8 @@ $recipientEmail = 'clark.edong@example.com'; // Update with your email
 $siteName = 'EDONG Portfolio';
 
 // Response function
-function sendResponse($success, $message) {
+function sendResponse($success, $message)
+{
     echo json_encode([
         'success' => $success,
         'message' => $message
@@ -79,7 +81,7 @@ $mailSent = true;
 if ($mailSent) {
     // Optional: Save to database
     // saveContactToDatabase($name, $email, $subject, $message);
-    
+
     sendResponse(true, 'Message transmitted successfully');
 } else {
     sendResponse(false, 'Failed to send message');
