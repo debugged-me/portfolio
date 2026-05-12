@@ -19,12 +19,13 @@ $config = [
     'status' => 'Available for freelance and full-time opportunities',
     'years_experience' => '6+',
     'hours_worked' => '10K+',
+    'turnstile_secret_key' => getenv('TURNSTILE_SECRET_KEY') ?: '',
 ];
 
 $socials = [
     [
         'label' => 'github',
-        'url' => 'https://github.com/clarkoder',
+        'url' => 'https://github.com/debugged-me',
     ],
     [
         'label' => 'linkedin',
@@ -32,7 +33,7 @@ $socials = [
     ],
     [
         'label' => 'facebook',
-        'url' => 'https://facebook.com',
+        'url' => 'https://facebook.com/debugged.me',
     ],
 ];
 
