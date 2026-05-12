@@ -12,7 +12,7 @@ $config = [
     'subtitle' => 'Full-Stack Developer',
     'location' => 'Mati City, Philippines',
     'postal' => '8200',
-    'email' => 'clark.eksdi@gmail.com',
+    'email' => 'clarksteven.edong@softtechservices.net',
     'phone' => '+639 703 735 533',
     'status' => 'AVAILABLE',
     'profile_image' => 'assets/profile.jpg',
@@ -164,9 +164,27 @@ $timeline = [
 ];
 
 $socialLinks = [
-    ['label' => 'Email', 'url' => 'mailto:' . $config['email'], 'icon' => 'mail'],
-    ['label' => 'GitHub', 'url' => '#', 'icon' => 'code'],
-    ['label' => 'LinkedIn', 'url' => '#', 'icon' => 'group'],
+    [
+        'label' => 'Email',
+        'value' => $config['email'],
+        'url' => 'https://mail.google.com/mail/?view=cm&fs=1&to=' . rawurlencode($config['email']) . '&su=' . rawurlencode('Portfolio Inquiry'),
+        'icon' => 'mail',
+        'target' => '_blank',
+    ],
+    [
+        'label' => 'Call / Viber',
+        'value' => $config['phone'],
+        'url' => 'tel:' . preg_replace('/\s+/', '', $config['phone']),
+        'icon' => 'call',
+        'target' => '_self',
+    ],
+    [
+        'label' => 'Mati City',
+        'value' => 'Davao Oriental, Philippines',
+        'url' => 'https://maps.google.com/?q=' . rawurlencode($config['location']),
+        'icon' => 'location_on',
+        'target' => '_blank',
+    ],
 ];
 
 // Helper: live screenshot URL via thum.io
@@ -174,6 +192,29 @@ function thumb($url)
 {
     return 'https://image.thum.io/get/width/640/crop/400/' . $url;
 }
+
+function hostLabel($url)
+{
+    $host = parse_url($url, PHP_URL_HOST) ?: $url;
+
+    return preg_replace('/^www\./', '', $host);
+}
+
+$projectCountsByCategory = [];
+foreach ($projects as $project) {
+    $projectCountsByCategory[$project['category']] = ($projectCountsByCategory[$project['category']] ?? 0) + 1;
+}
+
+$projectTotal = count($projects);
+$projectSectorCount = count($projectCountsByCategory);
+$featuredProject = $projects[0];
+$terminalCommands = [
+    'ls live/' . strtolower(str_replace(' ', '-', $projects[0]['title'])),
+    'curl -I https://' . hostLabel($projects[0]['url']),
+    'mysql -e "SHOW DATABASES LIKE \'%srms%\';"',
+    'grep -R "DepEd" deployments/government/',
+    'flutter build appbundle --release',
+];
 
 ?>
 <!DOCTYPE html>
@@ -703,6 +744,74 @@ function thumb($url)
         .profile-wrapper:hover::after {
             opacity: 1;
         }
+
+        .project-card-wrapper {
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .project-card-wrapper.is-hidden {
+            display: none;
+        }
+
+        .archive-panel {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(10, 10, 15, 0.08);
+            background:
+                radial-gradient(circle at top right, rgba(41, 121, 255, 0.12), transparent 34%),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(243, 244, 246, 0.94));
+            backdrop-filter: blur(18px);
+            box-shadow: 0 24px 50px rgba(10, 10, 15, 0.08);
+        }
+
+        .archive-lead {
+            max-width: 32rem;
+        }
+
+        .archive-metric {
+            border: 1px solid rgba(10, 10, 15, 0.08);
+            background: rgba(255, 255, 255, 0.86);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .archive-metric:hover {
+            transform: translateY(-3px);
+            border-color: rgba(41, 121, 255, 0.24);
+            box-shadow: 0 16px 32px rgba(41, 121, 255, 0.08);
+        }
+
+        .hero-metric {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(10, 10, 15, 0.08);
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(14px);
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .hero-metric:hover {
+            transform: translateY(-4px);
+            border-color: rgba(41, 121, 255, 0.26);
+            box-shadow: 0 18px 36px rgba(41, 121, 255, 0.09);
+        }
+
+        .hero-metric::before {
+            content: '';
+            position: absolute;
+            inset: 0 auto 0 0;
+            width: 4px;
+            background: linear-gradient(180deg, #2979FF, #00D4AA);
+        }
+
+        .project-card .project-hover-row {
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
+
+        .project-card:hover .project-hover-row,
+        .project-card:focus-within .project-hover-row {
+            transform: translateX(4px);
+            color: #2979FF;
+        }
     </style>
 
     <!-- Favicon -->
@@ -809,9 +918,9 @@ function thumb($url)
                         <span class="block gradient-text">Edong.</span>
                     </h1>
 
-                    <p class="text-sm md:text-base text-on-surface-variant max-w-lg leading-relaxed asymmetric-border mb-5">
+                    <p class="text-sm md:text-base text-on-surface-variant max-w-2xl leading-relaxed asymmetric-border mb-5">
                         <span class="text-primary font-medium">&lt;<?php echo $config['subtitle']; ?>/&gt;</span><br>
-                        Building education, government, and business systems from <?php echo $config['location']; ?>. PHP, MySQL, JavaScript, and Flutter — shipped to real clients.
+                        Shipping live portals, records systems, and operations tools for schools, government offices, and business teams across Davao Oriental. From DOIT College Portal to TrabaWho Mati, the work here is already in production.
                     </p>
 
                     <div class="flex flex-wrap gap-3">
@@ -822,6 +931,24 @@ function thumb($url)
                         <a href="#transmit" class="border border-on-surface px-5 py-2.5 text-[11px] font-bold tracking-[0.15em] uppercase hover:bg-on-surface hover:text-white transition-colors rounded">
                             Contact
                         </a>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-3xl">
+                        <div class="hero-metric rounded-xl px-4 py-3">
+                            <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-on-surface-variant block mb-1">Live Deployments</span>
+                            <strong class="text-2xl font-bold tracking-tight text-on-surface"><?php echo $projectTotal; ?></strong>
+                            <p class="text-xs text-on-surface-variant mt-1">Client systems currently listed in the archive.</p>
+                        </div>
+                        <div class="hero-metric rounded-xl px-4 py-3">
+                            <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-on-surface-variant block mb-1">Sectors</span>
+                            <strong class="text-2xl font-bold tracking-tight text-on-surface"><?php echo $projectSectorCount; ?></strong>
+                            <p class="text-xs text-on-surface-variant mt-1">Education, government, business, and mobile delivery.</p>
+                        </div>
+                        <div class="hero-metric rounded-xl px-4 py-3">
+                            <span class="text-[10px] font-bold tracking-[0.3em] uppercase text-on-surface-variant block mb-1">Primary Stack</span>
+                            <strong class="text-lg font-bold tracking-tight text-on-surface">PHP + MySQL</strong>
+                            <p class="text-xs text-on-surface-variant mt-1">JavaScript and Flutter layered where the product needs it.</p>
+                        </div>
                     </div>
                 </div>
 
@@ -885,64 +1012,113 @@ function thumb($url)
         </section>
 
         <!-- Archive / Projects Section (real projects) -->
-        <section class="py-12 md:py-16" id="archive">
+        <section class="py-12 md:py-16 relative overflow-hidden" id="archive">
+            <div class="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-primary/[0.05] to-transparent pointer-events-none"></div>
             <div class="max-w-6xl mx-auto px-5 md:px-8">
-                <div class="flex flex-col md:flex-row justify-between items-baseline mb-6 border-b border-gray-200 pb-4">
-                    <h2 class="text-2xl md:text-3xl font-bold tracking-tighter uppercase">
-                        The <span class="text-primary">Archive</span>
-                    </h2>
-                    <p class="max-w-xs text-on-surface-variant text-xs leading-relaxed mt-2 md:mt-0">
-                        Live, deployed systems — click any card to visit.
-                    </p>
+                <div class="archive-panel rounded-[28px] p-5 md:p-8 mb-6">
+                    <div class="grid grid-cols-12 gap-5 md:gap-6 items-end">
+                        <div class="col-span-12 lg:col-span-5">
+                            <div class="archive-lead">
+                                <span class="text-[10px] font-bold tracking-[0.35em] uppercase text-primary mb-2 block">02 / Archive</span>
+                                <h2 class="text-2xl md:text-4xl font-bold tracking-tighter uppercase mb-3">
+                                    Live Systems,
+                                    <span class="text-primary">Not Concepts.</span>
+                                </h2>
+                                <p class="text-sm md:text-base text-on-surface-variant leading-relaxed">
+                                    Real deployments for schools, government offices, and business operations. Filter by sector, then open the live system directly.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-span-12 lg:col-span-7">
+                            <div class="grid grid-cols-3 gap-3">
+                                <div class="archive-metric rounded-xl p-3">
+                                    <span class="text-[9px] font-bold tracking-[0.28em] uppercase text-on-surface-variant block mb-1">Systems</span>
+                                    <strong class="text-2xl font-bold tracking-tight text-on-surface"><?php echo $projectTotal; ?></strong>
+                                </div>
+                                <div class="archive-metric rounded-xl p-3">
+                                    <span class="text-[9px] font-bold tracking-[0.28em] uppercase text-on-surface-variant block mb-1">Sectors</span>
+                                    <strong class="text-2xl font-bold tracking-tight text-on-surface"><?php echo $projectSectorCount; ?></strong>
+                                </div>
+                                <div class="archive-metric rounded-xl p-3">
+                                    <span class="text-[9px] font-bold tracking-[0.28em] uppercase text-on-surface-variant block mb-1">Based In</span>
+                                    <strong class="text-lg font-bold tracking-tight text-on-surface">Mati</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+                        <div class="flex flex-wrap gap-2" id="projectFilters">
+                            <button class="filter-btn active" data-filter="all">All / <?php echo $projectTotal; ?></button>
+                            <?php foreach ($projectCountsByCategory as $category => $count): ?>
+                                <button class="filter-btn" data-filter="<?php echo $category; ?>"><?php echo $category; ?> / <?php echo $count; ?></button>
+                            <?php endforeach; ?>
+                        </div>
+                        <p class="text-[11px] font-bold tracking-[0.18em] uppercase text-on-surface-variant" id="archiveStatus">
+                            Showing all <?php echo $projectTotal; ?> deployments.
+                        </p>
+                    </div>
                 </div>
 
-                <!-- Filter Buttons -->
-                <div class="flex flex-wrap gap-2 mb-6" id="projectFilters">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="Education">Education</button>
-                    <button class="filter-btn" data-filter="Government">Government</button>
-                    <button class="filter-btn" data-filter="Business">Business</button>
-                    <button class="filter-btn" data-filter="Mobile">Mobile</button>
-                </div>
-
-                <!-- Projects Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5" id="projectsGrid">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5" id="projectsGrid">
                     <?php foreach ($projects as $index => $project): ?>
                         <a href="<?php echo $project['url']; ?>" target="_blank" rel="noopener"
-                            class="project-card-wrapper block bg-white rounded-lg overflow-hidden border border-gray-200 project-card reveal"
-                            data-category="<?php echo $project['category']; ?>">
-                            <div class="screenshot-frame aspect-video relative overflow-hidden bg-gray-100">
-                                <img
-                                    src="<?php echo thumb($project['url']); ?>"
-                                    alt="<?php echo $project['title']; ?>"
-                                    loading="lazy"
-                                    class="w-full h-full object-cover object-top"
-                                    onload="this.classList.add('loaded')"
-                                    onerror="this.src='https://via.placeholder.com/640x400/f3f4f6/9ca3af?text=<?php echo urlencode($project['title']); ?>'">
-                                <div class="absolute top-2 left-2 z-10">
-                                    <span class="text-[9px] font-bold tracking-widest uppercase bg-white/90 backdrop-blur-sm text-on-surface px-2 py-0.5 rounded">
-                                        <?php echo $project['category']; ?>
-                                    </span>
-                                </div>
-                                <div class="absolute top-2 right-2 z-10">
-                                    <span class="material-symbols-outlined text-sm bg-white/90 backdrop-blur-sm p-1 rounded text-primary">open_in_new</span>
-                                </div>
-                            </div>
-                            <div class="p-4">
-                                <h3 class="text-sm font-bold mb-1 tracking-tight text-on-surface">
-                                    <?php echo $project['title']; ?>
-                                </h3>
-                                <p class="text-xs text-on-surface-variant leading-relaxed mb-3 line-clamp-2">
-                                    <?php echo $project['desc']; ?>
-                                </p>
-                                <div class="flex flex-wrap gap-1">
-                                    <?php foreach ($project['tags'] as $tag): ?>
-                                        <span class="text-[9px] font-bold tracking-wider uppercase bg-gray-100 text-on-surface-variant px-2 py-0.5 rounded">
-                                            <?php echo $tag; ?>
+                            class="project-card-wrapper block reveal"
+                            data-category="<?php echo $project['category']; ?>"
+                            data-title="<?php echo htmlspecialchars($project['title'], ENT_QUOTES, 'UTF-8'); ?>"
+                            data-desc="<?php echo htmlspecialchars($project['desc'], ENT_QUOTES, 'UTF-8'); ?>"
+                            data-url="<?php echo htmlspecialchars($project['url'], ENT_QUOTES, 'UTF-8'); ?>"
+                            data-host="<?php echo htmlspecialchars(hostLabel($project['url']), ENT_QUOTES, 'UTF-8'); ?>"
+                            data-tags="<?php echo htmlspecialchars(implode('|', $project['tags']), ENT_QUOTES, 'UTF-8'); ?>"
+                            tabindex="0">
+                            <article class="bg-white rounded-2xl overflow-hidden border border-gray-200 project-card h-full">
+                                <div class="screenshot-frame aspect-[16/10] relative overflow-hidden bg-gray-100">
+                                    <img
+                                        src="<?php echo thumb($project['url']); ?>"
+                                        alt="<?php echo $project['title']; ?>"
+                                        loading="lazy"
+                                        class="w-full h-full object-cover object-top"
+                                        onload="this.classList.add('loaded')"
+                                        onerror="this.src='https://via.placeholder.com/640x400/f3f4f6/9ca3af?text=<?php echo urlencode($project['title']); ?>'">
+                                    <div class="absolute inset-x-0 top-0 p-3 flex items-start justify-between gap-3 z-10">
+                                        <span class="text-[9px] font-bold tracking-[0.2em] uppercase bg-white/90 backdrop-blur-sm text-on-surface px-2 py-1 rounded-full">
+                                            <?php echo $project['category']; ?>
                                         </span>
-                                    <?php endforeach; ?>
+                                        <span class="inline-flex items-center gap-1 rounded-full bg-on-surface/80 px-2.5 py-1 text-[9px] font-bold tracking-[0.2em] uppercase text-white backdrop-blur-sm">
+                                            #<?php echo str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT); ?>
+                                        </span>
+                                    </div>
+                                    <div class="absolute inset-x-0 bottom-0 px-4 py-3 bg-gradient-to-t from-black/65 via-black/10 to-transparent text-white">
+                                        <p class="text-[11px] font-mono"><?php echo hostLabel($project['url']); ?></p>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="p-4 md:p-5 flex flex-col h-full">
+                                    <div class="flex items-start justify-between gap-3 mb-2">
+                                        <div>
+                                            <h3 class="text-base font-bold tracking-tight text-on-surface">
+                                                <?php echo $project['title']; ?>
+                                            </h3>
+                                            <p class="text-[11px] font-bold tracking-[0.18em] uppercase text-primary mt-1"><?php echo $project['category']; ?> Delivery</p>
+                                        </div>
+                                        <span class="material-symbols-outlined text-primary">arrow_outward</span>
+                                    </div>
+                                    <p class="text-sm text-on-surface-variant leading-relaxed mb-4 flex-1">
+                                        <?php echo $project['desc']; ?>
+                                    </p>
+                                    <div class="flex flex-wrap gap-1.5 mb-4">
+                                        <?php foreach ($project['tags'] as $tag): ?>
+                                            <span class="text-[9px] font-bold tracking-[0.2em] uppercase bg-gray-100 text-on-surface-variant px-2.5 py-1 rounded-full">
+                                                <?php echo $tag; ?>
+                                            </span>
+                                        <?php endforeach; ?>
+                                    </div>
+                                    <div class="project-hover-row flex items-center justify-between text-[11px] font-bold tracking-[0.2em] uppercase text-on-surface-variant">
+                                        <span>Open Live System</span>
+                                        <span class="material-symbols-outlined text-base">north_east</span>
+                                    </div>
+                                </div>
+                            </article>
                         </a>
                     <?php endforeach; ?>
                 </div>
@@ -1018,15 +1194,18 @@ function thumb($url)
                         Let's <span class="text-primary">Talk</span>
                     </h2>
                     <p class="text-sm text-on-surface-variant mb-6 leading-relaxed">
-                        Open to freelance and full-time roles. Reach out via any channel below.
+                        Need a student portal, records platform, internal dashboard, or a Flutter companion app? Send the scope, target users, and timeline. I handle builds grounded in actual operations, not template demos.
                     </p>
 
                     <div class="space-y-2">
                         <?php foreach ($socialLinks as $link): ?>
-                            <a href="<?php echo $link['url']; ?>" class="group flex items-center justify-between border border-gray-200 bg-white rounded px-4 py-3 hover:border-primary transition-colors">
-                                <span class="text-[10px] font-bold tracking-[0.2em] uppercase flex items-center gap-2 group-hover:text-primary transition-colors">
-                                    <span class="material-symbols-outlined text-base"><?php echo $link['icon']; ?></span>
-                                    <?php echo $link['label']; ?>
+                            <a href="<?php echo $link['url']; ?>" target="<?php echo $link['target']; ?>" <?php echo $link['target'] === '_blank' ? ' rel="noopener"' : ''; ?> class="group flex items-center justify-between border border-gray-200 bg-white rounded-xl px-4 py-3 hover:border-primary transition-colors">
+                                <span class="flex items-center gap-3">
+                                    <span class="material-symbols-outlined text-base text-primary"><?php echo $link['icon']; ?></span>
+                                    <span>
+                                        <span class="text-[10px] font-bold tracking-[0.2em] uppercase block group-hover:text-primary transition-colors"><?php echo $link['label']; ?></span>
+                                        <span class="text-sm text-on-surface-variant"><?php echo $link['value']; ?></span>
+                                    </span>
                                 </span>
                                 <span class="material-symbols-outlined text-base -rotate-45 group-hover:rotate-0 transition-transform text-on-surface-variant">arrow_forward</span>
                             </a>
@@ -1049,6 +1228,16 @@ function thumb($url)
                             </div>
                         </div>
                         <div>
+                            <label class="text-[9px] font-bold tracking-[0.3em] uppercase text-on-surface-variant block mb-1.5">Inquiry Type</label>
+                            <select name="subject"
+                                class="w-full bg-transparent border-0 border-b border-gray-200 px-0 py-2 text-sm focus:ring-0 focus:border-primary transition-colors focus:outline-none">
+                                <option value="project">Project Collaboration</option>
+                                <option value="hire">Hiring Opportunity</option>
+                                <option value="consult">Consultation</option>
+                                <option value="other">Other Inquiry</option>
+                            </select>
+                        </div>
+                        <div>
                             <label class="text-[9px] font-bold tracking-[0.3em] uppercase text-on-surface-variant block mb-1.5">Message</label>
                             <textarea name="message" placeholder="Project description / inquiry..." rows="4" required
                                 class="w-full bg-transparent border-0 border-b border-gray-200 px-0 py-2 text-sm focus:ring-0 focus:border-primary transition-colors placeholder:text-gray-400 focus:outline-none resize-none"></textarea>
@@ -1062,7 +1251,7 @@ function thumb($url)
                             Send Message
                             <span class="material-symbols-outlined text-base">arrow_right_alt</span>
                         </button>
-                        <p id="formStatus" class="text-xs text-on-surface-variant mt-2 hidden"></p>
+                        <p id="formStatus" class="text-xs text-on-surface-variant mt-2 hidden" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
@@ -1070,13 +1259,10 @@ function thumb($url)
     </main>
 
     <footer class="py-6 border-t border-gray-200">
-        <div class="max-w-6xl mx-auto px-5 md:px-8 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div class="max-w-6xl mx-auto px-5 md:px-8 flex items-center justify-between gap-3">
             <div class="text-sm font-bold tracking-tight uppercase">
                 &lt;<?php echo $config['short_name']; ?>/&gt;
             </div>
-            <p class="text-[9px] tracking-[0.25em] uppercase text-on-surface-variant text-center">
-                © <?php echo date('Y'); ?> <?php echo $config['name']; ?> / <?php echo $config['location']; ?>
-            </p>
             <span class="text-[9px] tracking-[0.25em] uppercase font-bold text-on-surface-variant flex items-center gap-2">
                 <span class="w-1.5 h-1.5 bg-teal rounded-full animate-pulse"></span>
                 <?php echo $config['status']; ?>
@@ -1094,7 +1280,7 @@ function thumb($url)
         });
 
         // Terminal command rotator
-        const commands = ['whoami', 'ls projects/', 'git status', 'php artisan serve', 'npm run build'];
+        const commands = <?php echo json_encode($terminalCommands, JSON_UNESCAPED_SLASHES); ?>;
         let cmdIndex = 0;
         const terminalCommand = document.getElementById('terminalCommand');
         if (terminalCommand) {
@@ -1183,14 +1369,29 @@ function thumb($url)
         // Project filter
         const filterBtns = document.querySelectorAll('.filter-btn');
         const projectCards = document.querySelectorAll('.project-card-wrapper');
+        const archiveStatus = document.getElementById('archiveStatus');
+
         filterBtns.forEach(btn => {
             btn.addEventListener('click', () => {
                 const filter = btn.dataset.filter;
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
+                let visibleCards = [];
+
                 projectCards.forEach(card => {
-                    card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+                    const isVisible = filter === 'all' || card.dataset.category === filter;
+                    card.classList.toggle('is-hidden', !isVisible);
+
+                    if (isVisible) {
+                        visibleCards.push(card);
+                    }
                 });
+
+                if (archiveStatus) {
+                    archiveStatus.textContent = filter === 'all' ?
+                        `Showing all ${visibleCards.length} deployments.` :
+                        `Showing ${visibleCards.length} ${filter.toLowerCase()} deployment${visibleCards.length === 1 ? '' : 's'}.`;
+                }
             });
         });
 
@@ -1412,6 +1613,9 @@ function thumb($url)
                         showStatus(data.message || 'Message sent successfully.', '#00D4AA');
                         form.reset();
                         if (window.turnstile) window.turnstile.reset();
+                    } else if (data.logged) {
+                        btn.innerHTML = '<span class="text-orange">SAVED</span>';
+                        showStatus(data.message || 'Message saved, but email delivery still needs server setup.', '#FF6B35');
                     } else {
                         btn.innerHTML = '<span class="text-orange">FAILED</span>';
                         showStatus(data.message || 'Something went wrong.', '#FF6B35');
