@@ -41,37 +41,37 @@ $projects = [
         'title' => 'DOIT College Portal',
         'desc' => 'Academic portal for DOIT College handling enrollment, student records, registrar workflows, and online services.',
         'url' => 'https://portal.doitcollege.com/',
-        'tags' => ['Next.js', 'Payload CMS', 'Tailwind CSS'],
+        'tags' => ['PHP', 'CodeIgniter 3', 'MySQL', 'Bootstrap', 'jQuery', 'AJAX', 'DataTables'],
     ],
     [
         'title' => 'WCManila SRMS',
         'desc' => 'Student Records Management System focused on grading, enrollment processing, transcript generation, and reporting.',
         'url' => 'https://wcmanila-srms.com/',
-        'tags' => ['React', 'Redux', 'React i18n'],
+        'tags' => ['PHP', 'CodeIgniter 3', 'MariaDB', 'Bootstrap', 'jQuery', 'AJAX', 'Select2'],
     ],
     [
-        'title' => 'IHMA Mati SRMS',
+        'title' => 'IHMA Mati',
         'desc' => 'Academic records platform for IHMA Mati supporting records, grading, and institution-wide administrative workflows.',
         'url' => 'https://srms.ihmamati.edu.ph/',
-        'tags' => ['Next.js', 'PostgreSQL', 'System Design'],
+        'tags' => ['PHP', 'CodeIgniter 3', 'MySQL', 'Bootstrap', 'jQuery', 'DataTables', 'Select2'],
     ],
     [
         'title' => 'DepEd QAME',
         'desc' => 'Quality Assurance Monitoring and Evaluation platform for education teams, with dashboards, assessment flows, and review tools.',
         'url' => 'https://deped-qame.com/',
-        'tags' => ['React.js', 'Redux', 'Tailwind CSS'],
+        'tags' => ['PHP', 'CodeIgniter 3', 'MariaDB', 'Bootstrap', 'jQuery', 'AJAX', 'DataTables'],
     ],
     [
         'title' => 'DepEd Davao Sports',
         'desc' => 'Sports event management platform covering athlete registration, schedules, scoring, and event coordination.',
         'url' => 'https://sports.depeddavor.com/',
-        'tags' => ['HTML', 'SCSS', 'JavaScript'],
+        'tags' => ['PHP', 'MySQL', 'Bootstrap', 'jQuery', 'AJAX', 'DataTables'],
     ],
     [
         'title' => 'TrabaWho Mati',
         'desc' => 'Job-matching platform connecting job seekers and employers through searchable listings and civic employment workflows.',
         'url' => 'https://trabawho.mati.gov.ph/',
-        'tags' => ['Next.js', 'Formik', 'Drag & Drop'],
+        'tags' => ['PHP', 'CodeIgniter 3', 'MySQL', 'Bootstrap', 'jQuery', 'Select2', 'AJAX'],
     ],
 ];
 
@@ -95,43 +95,49 @@ $experience = [
 
 $stackGroups = [
     [
-        'label' => 'Frontend',
-        'items' => [
-            ['name' => 'JavaScript', 'icon' => 'JS', 'tone' => '#f7df1e', 'text' => '#111111'],
-            ['name' => 'TypeScript', 'icon' => 'TS', 'tone' => '#3178c6', 'text' => '#ffffff'],
-            ['name' => 'React', 'icon' => 'Re', 'tone' => '#0ea5e9', 'text' => '#ffffff'],
-            ['name' => 'Next.js', 'icon' => 'N', 'tone' => '#f5f5f5', 'text' => '#111111'],
-            ['name' => 'Vue', 'icon' => 'Vu', 'tone' => '#42b883', 'text' => '#ffffff'],
-            ['name' => 'Tailwind CSS', 'icon' => 'Tw', 'tone' => '#38bdf8', 'text' => '#0f172a'],
-        ],
-    ],
-    [
         'label' => 'Backend',
         'items' => [
             ['name' => 'PHP', 'icon' => 'PHP', 'tone' => '#777bb4', 'text' => '#ffffff'],
-            ['name' => 'Node.js', 'icon' => 'No', 'tone' => '#539e43', 'text' => '#ffffff'],
-            ['name' => 'Laravel', 'icon' => 'La', 'tone' => '#ff2d20', 'text' => '#ffffff'],
-            ['name' => 'Express', 'icon' => 'Ex', 'tone' => '#f3f4f6', 'text' => '#111111'],
+            ['name' => 'CodeIgniter 3', 'icon' => 'CI3', 'tone' => '#ee4323', 'text' => '#ffffff'],
+            ['name' => 'Laravel', 'icon' => 'LA', 'tone' => '#ff2d20', 'text' => '#ffffff'],
             ['name' => 'REST APIs', 'icon' => 'API', 'tone' => '#1cff68', 'text' => '#111111'],
         ],
     ],
     [
         'label' => 'Database',
         'items' => [
-            ['name' => 'MySQL', 'icon' => 'My', 'tone' => '#00758f', 'text' => '#ffffff'],
-            ['name' => 'PostgreSQL', 'icon' => 'Pg', 'tone' => '#336791', 'text' => '#ffffff'],
-            ['name' => 'MongoDB', 'icon' => 'Mo', 'tone' => '#13aa52', 'text' => '#ffffff'],
-            ['name' => 'Query Optimization', 'icon' => 'Q', 'tone' => '#8b5cf6', 'text' => '#ffffff'],
+            ['name' => 'MySQL', 'icon' => 'MY', 'tone' => '#00758f', 'text' => '#ffffff'],
+            ['name' => 'MariaDB', 'icon' => 'MA', 'tone' => '#003545', 'text' => '#ffffff'],
+            ['name' => 'PostgreSQL', 'icon' => 'PG', 'tone' => '#336791', 'text' => '#ffffff'],
+        ],
+    ],
+    [
+        'label' => 'Frontend',
+        'items' => [
+            ['name' => 'Bootstrap', 'icon' => 'BS', 'tone' => '#7952b3', 'text' => '#ffffff'],
+            ['name' => 'jQuery', 'icon' => 'jQ', 'tone' => '#0769ad', 'text' => '#ffffff'],
+            ['name' => 'AJAX', 'icon' => 'AJ', 'tone' => '#5a5a5a', 'text' => '#ffffff'],
+            ['name' => 'JavaScript', 'icon' => 'JS', 'tone' => '#f7df1e', 'text' => '#111111'],
+            ['name' => 'HTML5', 'icon' => 'HT', 'tone' => '#e34c26', 'text' => '#ffffff'],
+            ['name' => 'CSS3', 'icon' => 'CS', 'tone' => '#1572b6', 'text' => '#ffffff'],
+        ],
+    ],
+    [
+        'label' => 'Libraries',
+        'items' => [
+            ['name' => 'DataTables', 'icon' => 'DT', 'tone' => '#3399ff', 'text' => '#ffffff'],
+            ['name' => 'Select2', 'icon' => 'S2', 'tone' => '#5897fb', 'text' => '#ffffff'],
+            ['name' => 'Chart.js', 'icon' => 'CH', 'tone' => '#ff6384', 'text' => '#ffffff'],
         ],
     ],
     [
         'label' => 'Tools',
         'items' => [
-            ['name' => 'Git', 'icon' => 'Gi', 'tone' => '#f1502f', 'text' => '#ffffff'],
-            ['name' => 'Docker', 'icon' => 'Do', 'tone' => '#2496ed', 'text' => '#ffffff'],
-            ['name' => 'AWS', 'icon' => 'Aw', 'tone' => '#ff9900', 'text' => '#111111'],
-            ['name' => 'Linux', 'icon' => 'Li', 'tone' => '#facc15', 'text' => '#111111'],
-            ['name' => 'CI/CD', 'icon' => 'CI', 'tone' => '#14b8a6', 'text' => '#ffffff'],
+            ['name' => 'Git', 'icon' => 'GT', 'tone' => '#f1502f', 'text' => '#ffffff'],
+            ['name' => 'VS Code', 'icon' => 'VC', 'tone' => '#007acc', 'text' => '#ffffff'],
+            ['name' => 'Linux', 'icon' => 'LX', 'tone' => '#facc15', 'text' => '#111111'],
+            ['name' => 'Apache', 'icon' => 'AP', 'tone' => '#d22128', 'text' => '#ffffff'],
+            ['name' => 'XAMPP', 'icon' => 'XM', 'tone' => '#fb7a24', 'text' => '#ffffff'],
         ],
     ],
 ];
@@ -213,6 +219,16 @@ $stackGroups = [
         .page-shell {
             position: relative;
             isolation: isolate;
+        }
+
+        .particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .intro-loader {
@@ -314,6 +330,7 @@ $stackGroups = [
             height: 3.3rem;
             z-index: 45;
             border-radius: 999px;
+            cursor: pointer;
         }
 
         .menu-toggle span {
@@ -326,13 +343,18 @@ $stackGroups = [
             transition: transform 0.28s ease, opacity 0.25s ease, width 0.25s ease;
         }
 
-        .menu-toggle span:first-child {
-            top: calc(50% - 6px);
+        .menu-toggle span:nth-child(1) {
+            top: calc(50% - 8px);
             transform: translate(-50%, -50%);
         }
 
-        .menu-toggle span:last-child {
-            top: calc(50% + 6px);
+        .menu-toggle span:nth-child(2) {
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .menu-toggle span:nth-child(3) {
+            top: calc(50% + 8px);
             transform: translate(-50%, -50%);
         }
 
@@ -348,6 +370,14 @@ $stackGroups = [
             width: 3.3rem;
             height: 3.3rem;
             z-index: 46;
+            cursor: pointer;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            transition: background 0.2s ease;
+        }
+
+        .drawer-close:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .drawer-close span {
@@ -371,33 +401,34 @@ $stackGroups = [
         .drawer-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.2s ease;
+            transition: opacity 0.3s ease;
             z-index: 30;
+            backdrop-filter: blur(2px);
         }
 
         .drawer {
             position: fixed;
             top: 0;
             right: 0;
-            width: min(31.25rem, calc(100vw - 3rem));
+            width: min(40rem, calc(100vw - 2rem));
             height: 100dvh;
             padding: 8.2rem 2.2rem 3rem;
-            background: transparent;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 50%, #1a1a1a 100%);
             transform: translateX(100%);
             transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
             z-index: 35;
             overflow: hidden;
+            box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
         }
 
         .drawer::before {
             content: "";
             position: absolute;
-            inset: -12% -24% -12% 16%;
-            background: radial-gradient(circle at left center, #3a3a3a 0%, #2f2f2f 48%, #2a2a2a 100%);
-            border-radius: 48%;
+            inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(104, 207, 255, 0.05) 0%, transparent 50%);
             z-index: -1;
         }
 
@@ -412,46 +443,90 @@ $stackGroups = [
 
         .drawer-grid {
             display: grid;
-            gap: 3rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             align-content: start;
             height: 100%;
-            max-width: 19rem;
+            max-width: 28rem;
             margin: 0 auto;
+            padding-top: 1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .drawer-label {
             color: var(--muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
         }
 
         .drawer-list {
             list-style: none;
             display: grid;
-            gap: 0.8rem;
+            gap: 0.4rem;
         }
 
-        .drawer-link,
-        .drawer-nav button {
-            font-size: 1.2rem;
-            line-height: 1.4;
+        .drawer-link {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 0.4rem 0.6rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            border-radius: 0.4rem;
+            margin: -0.1rem 0;
+        }
+
+        .drawer-link:hover {
+            color: var(--accent);
+            transform: translateX(3px);
+            background: rgba(104, 207, 255, 0.1);
         }
 
         .drawer-nav button {
             display: inline-flex;
             align-items: center;
-            gap: 0.85rem;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            padding: 0.4rem 0.6rem;
+            color: var(--text);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            width: 100%;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+            border-radius: 0.4rem;
+            margin: -0.1rem 0;
+        }
+
+        .drawer-nav button:hover {
+            color: var(--accent);
+            transform: translateX(3px);
+            background: rgba(104, 207, 255, 0.1);
         }
 
         .drawer-dot {
-            width: 0.88rem;
-            height: 0.88rem;
+            width: 0.75rem;
+            height: 0.75rem;
             border-radius: 999px;
             transition: transform 0.25s ease;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.5rem;
+            font-size: 0.4rem;
             flex-shrink: 0;
         }
 
@@ -867,15 +942,30 @@ $stackGroups = [
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-width: 3.1rem;
-            height: 3.1rem;
-            padding: 0 0.45rem;
-            border-radius: 0.95rem;
+            min-width: 3.2rem;
+            height: 3.2rem;
+            padding: 0 0.5rem;
+            border-radius: 0.8rem;
             background: var(--badge-color, #ffffff);
             color: var(--badge-text, #111111);
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            font-size: 1rem;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stack-skill-badge::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            opacity: 0.6;
         }
 
         .stack-skill-name {
@@ -1244,6 +1334,7 @@ $stackGroups = [
     </div>
 
     <div class="page-shell">
+        <canvas id="particleCanvas" class="particle-canvas"></canvas>
         <div class="ambient-orb ambient-orb--one"></div>
         <div class="ambient-orb ambient-orb--two"></div>
         <div class="ambient-orb ambient-orb--three"></div>
@@ -1251,6 +1342,7 @@ $stackGroups = [
         <header class="site-header">
             <a class="brand" href="#home"><?php echo htmlspecialchars($config['short_name'], ENT_QUOTES, 'UTF-8'); ?></a>
             <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteDrawer" aria-label="Toggle navigation">
+                <span></span>
                 <span></span>
                 <span></span>
             </button>
@@ -1589,6 +1681,112 @@ $stackGroups = [
 
             updateProgress();
             updateActiveSection();
+
+            // ============================================
+            // PARTICLE ANIMATION SYSTEM
+            // ============================================
+            function initParticles() {
+                const canvas = document.getElementById('particleCanvas');
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                let animationId;
+
+                // Set canvas size
+                function resizeCanvas() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
+
+                // Particle class
+                class Particle {
+                    constructor() {
+                        this.x = Math.random() * canvas.width;
+                        this.y = Math.random() * canvas.height;
+                        this.size = Math.random() * 2 + 0.5;
+                        this.speedX = (Math.random() - 0.5) * 0.5;
+                        this.speedY = (Math.random() - 0.5) * 0.5;
+                        this.opacity = Math.random() * 0.5 + 0.2;
+                    }
+
+                    update() {
+                        this.x += this.speedX;
+                        this.y += this.speedY;
+
+                        // Bounce off edges
+                        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                    }
+
+                    draw() {
+                        ctx.fillStyle = `rgba(104, 207, 255, ${this.opacity})`;
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fill();
+                    }
+                }
+
+                // Create particles
+                function createParticles() {
+                    particles = [];
+                    const particleCount = Math.min(50, Math.floor((canvas.width * canvas.height) / 15000));
+                    for (let i = 0; i < particleCount; i++) {
+                        particles.push(new Particle());
+                    }
+                }
+
+                // Draw connections between nearby particles
+                function drawConnections() {
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+
+                            if (distance < 120) {
+                                const opacity = (1 - distance / 120) * 0.2;
+                                ctx.strokeStyle = `rgba(104, 207, 255, ${opacity})`;
+                                ctx.lineWidth = 0.5;
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                }
+
+                // Animation loop
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    particles.forEach(particle => {
+                        particle.update();
+                        particle.draw();
+                    });
+
+                    drawConnections();
+                    animationId = requestAnimationFrame(animate);
+                }
+
+                // Initialize and start animation
+                createParticles();
+                animate();
+
+                // Cleanup on page unload
+                window.addEventListener('beforeunload', () => {
+                    if (animationId) {
+                        cancelAnimationFrame(animationId);
+                    }
+                });
+            }
+
+            // Initialize particles
+            initParticles();
 
             window.setTimeout(hideIntro, 1450);
         }());
