@@ -102,8 +102,19 @@ function storeSubmission($storagePath, $payload)
     return false;
 }
 
+// Include SMTP configuration if available
+if (file_exists(__DIR__ . '/phpmailer-config.php')) {
+    require_once __DIR__ . '/phpmailer-config.php';
+}
+
 function sendMailMessage($recipientEmail, $siteName, $name, $email, $subject, $messageBody)
 {
+    // Try SMTP first if available
+    if (function_exists('sendMailWithSMTP')) {
+        return sendMailWithSMTP($recipientEmail, $siteName, $name, $email, $subject, $messageBody);
+    }
+
+    // Fallback to regular PHP mail()
     $recipientDomain = substr(strrchr($recipientEmail, '@'), 1) ?: 'localhost';
     $fromEmail = filter_var('noreply@' . $recipientDomain, FILTER_VALIDATE_EMAIL) ?: $recipientEmail;
     $mailSubject = '[' . $siteName . '] New Message: ' . $subject;

@@ -676,27 +676,12 @@ $terminalCommands = [
         /* Stronger project card hover w/ glow */
         .project-card {
             position: relative;
-        }
-
-        .project-card::before {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            border-radius: inherit;
-            background: linear-gradient(135deg, rgba(41, 121, 255, 0.35), rgba(0, 212, 170, 0.35));
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.35s ease;
-            filter: blur(8px);
-        }
-
-        .project-card:hover::before {
-            opacity: 1;
+            transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1), box-shadow 0.3s ease;
         }
 
         .project-card:hover {
-            transform: translateY(-6px) scale(1.01);
-            box-shadow: 0 18px 40px rgba(41, 121, 255, 0.18);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(41, 121, 255, 0.12);
         }
 
         /* Skill card hover */
@@ -756,12 +741,10 @@ $terminalCommands = [
         .archive-panel {
             position: relative;
             overflow: hidden;
-            border: 1px solid rgba(10, 10, 15, 0.08);
-            background:
-                radial-gradient(circle at top right, rgba(41, 121, 255, 0.12), transparent 34%),
-                linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(243, 244, 246, 0.94));
-            backdrop-filter: blur(18px);
-            box-shadow: 0 24px 50px rgba(10, 10, 15, 0.08);
+            border: 1px solid rgba(10, 10, 15, 0.06);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(10, 10, 15, 0.04);
         }
 
         .archive-lead {
@@ -769,15 +752,15 @@ $terminalCommands = [
         }
 
         .archive-metric {
-            border: 1px solid rgba(10, 10, 15, 0.08);
-            background: rgba(255, 255, 255, 0.86);
+            border: 1px solid rgba(10, 10, 15, 0.06);
+            background: rgba(255, 255, 255, 0.92);
             transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
         }
 
         .archive-metric:hover {
-            transform: translateY(-3px);
-            border-color: rgba(41, 121, 255, 0.24);
-            box-shadow: 0 16px 32px rgba(41, 121, 255, 0.08);
+            transform: translateY(-2px);
+            border-color: rgba(41, 121, 255, 0.18);
+            box-shadow: 0 8px 24px rgba(41, 121, 255, 0.06);
         }
 
         .hero-metric {
@@ -1073,14 +1056,14 @@ $terminalCommands = [
                             data-tags="<?php echo htmlspecialchars(implode('|', $project['tags']), ENT_QUOTES, 'UTF-8'); ?>"
                             tabindex="0">
                             <article class="bg-white rounded-2xl overflow-hidden border border-gray-200 project-card h-full">
-                                <div class="screenshot-frame aspect-[16/10] relative overflow-hidden bg-gray-100">
+                                <div class="screenshot-frame aspect-[16/10] relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100">
                                     <img
                                         src="<?php echo thumb($project['url']); ?>"
                                         alt="<?php echo $project['title']; ?>"
                                         loading="lazy"
-                                        class="w-full h-full object-cover object-top"
-                                        onload="this.classList.add('loaded')"
-                                        onerror="this.src='https://via.placeholder.com/640x400/f3f4f6/9ca3af?text=<?php echo urlencode($project['title']); ?>'">
+                                        class="w-full h-full object-cover object-top transition-opacity duration-300"
+                                        onload="this.classList.add('loaded'); this.parentElement.classList.remove('screenshot-frame')"
+                                        onerror="this.src='https://via.placeholder.com/640x400/f3f4f6/6b7280?text=<?php echo urlencode(substr($project['title'], 0, 20)); ?>'; this.classList.add('loaded'); this.parentElement.classList.remove('screenshot-frame');">
                                     <div class="absolute inset-x-0 top-0 p-3 flex items-start justify-between gap-3 z-10">
                                         <span class="text-[9px] font-bold tracking-[0.2em] uppercase bg-white/90 backdrop-blur-sm text-on-surface px-2 py-1 rounded-full">
                                             <?php echo $project['category']; ?>
