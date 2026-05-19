@@ -9,8 +9,10 @@ header('Content-Type: application/json');
 
 $recipientEmail = 'clarksteven.edong@softtechservices.net';
 $siteName = 'CLARkODER Portfolio';
-$turnstileSecret = getenv('TURNSTILE_SECRET_KEY') ?: '';
+$recaptchaSecret = getenv('RECAPTCHA_SECRET_KEY') ?: '';
 $storagePath = __DIR__ . '/storage/contact-submissions.log';
+$recaptchaExpectedAction = 'contact_form';
+$recaptchaMinimumScore = 0.5;
 
 function sendResponse($success, $message, $extra = [])
 {
@@ -32,14 +34,24 @@ function getClientIp()
     return 'unknown';
 }
 
-function verifyTurnstileToken($secret, $token)
+function getCurrentHost()
+{
+    $host = trim((string) ($_SERVER['HTTP_HOST'] ?? ''));
+    if ($host === '') {
+        return '';
+    }
+
+    return preg_replace('/:\d+\z/', '', strtolower($host));
+}
+
+function verifyRecaptchaToken($secret, $token)
 {
     if ($token === '') {
-        return false;
+        return null;
     }
 
     if ($secret === '') {
-        return true;
+        return null;
     }
 
     $payload = http_build_query([
@@ -48,23 +60,42 @@ function verifyTurnstileToken($secret, $token)
         'remoteip' => getClientIp(),
     ]);
 
-    $context = stream_context_create([
-        'http' => [
-            'method' => 'POST',
-            'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
-            'content' => $payload,
-            'timeout' => 10,
-        ],
-    ]);
+    if (function_exists('curl_init')) {
+        $curl = curl_init('https://www.google.com/recaptcha/api/siteverify');
+        curl_setopt_array($curl, [
+            CURLOPT_POST => true,
+            CURLOPT_POSTFIELDS => $payload,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_TIMEOUT => 10,
+            CURLOPT_HTTPHEADER => [
+                'Content-Type: application/x-www-form-urlencoded',
+            ],
+        ]);
 
-    $response = @file_get_contents('https://challenges.cloudflare.com/turnstile/v0/siteverify', false, $context);
-    if ($response === false) {
-        return false;
+        $response = curl_exec($curl);
+    } else {
+        $context = stream_context_create([
+            'http' => [
+                'method' => 'POST',
+                'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
+                'content' => $payload,
+                'timeout' => 10,
+            ],
+        ]);
+
+        $response = @file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+    }
+
+    if ($response === false || !is_string($response)) {
+        return null;
     }
 
     $decoded = json_decode($response, true);
+    if (!is_array($decoded)) {
+        return null;
+    }
 
-    return !empty($decoded['success']);
+    return $decoded;
 }
 
 function storeSubmission($storagePath, $payload)
@@ -152,7 +183,7 @@ $name = isset($_POST['name']) ? trim($_POST['name']) : '';
 $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 $subject = isset($_POST['subject']) ? trim($_POST['subject']) : '';
 $message = isset($_POST['message']) ? trim($_POST['message']) : '';
-$turnstileToken = isset($_POST['cf-turnstile-response']) ? trim($_POST['cf-turnstile-response']) : '';
+$recaptchaToken = isset($_POST['g-recaptcha-response']) ? trim($_POST['g-recaptcha-response']) : '';
 
 if ($name === '' || $email === '' || $message === '') {
     sendResponse(false, 'Required fields are missing.');
@@ -162,8 +193,34 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     sendResponse(false, 'Invalid email address.');
 }
 
-if (!verifyTurnstileToken($turnstileSecret, $turnstileToken)) {
-    sendResponse(false, 'Verification failed. Please complete the challenge again.');
+if ($recaptchaSecret === '') {
+    sendResponse(false, 'reCAPTCHA is not configured on this server yet.');
+}
+
+if ($recaptchaToken === '') {
+    sendResponse(false, 'reCAPTCHA verification failed. Please complete the challenge again.');
+}
+
+$verification = verifyRecaptchaToken($recaptchaSecret, $recaptchaToken);
+if (!is_array($verification) || empty($verification['success'])) {
+    sendResponse(false, 'reCAPTCHA verification failed. Please complete the challenge again.');
+}
+
+$verifiedAction = isset($verification['action']) ? (string) $verification['action'] : '';
+$verifiedScore = isset($verification['score']) ? (float) $verification['score'] : 0.0;
+$verifiedHostname = isset($verification['hostname']) ? strtolower((string) $verification['hostname']) : '';
+$currentHost = getCurrentHost();
+
+if ($verifiedAction !== $recaptchaExpectedAction) {
+    sendResponse(false, 'reCAPTCHA action mismatch.');
+}
+
+if ($verifiedScore < $recaptchaMinimumScore) {
+    sendResponse(false, 'reCAPTCHA score too low. Please try again.');
+}
+
+if ($currentHost !== '' && $verifiedHostname !== '' && $verifiedHostname !== $currentHost) {
+    sendResponse(false, 'reCAPTCHA hostname mismatch.');
 }
 
 $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
@@ -190,6 +247,8 @@ $loggedPath = storeSubmission($storagePath, [
     'host' => $_SERVER['HTTP_HOST'] ?? 'unknown',
     'created_at' => date('c'),
     'mail_sent' => $mailSent,
+    'recaptcha_score' => $verifiedScore,
+    'recaptcha_action' => $verifiedAction,
 ]);
 $logged = $loggedPath !== false;
 

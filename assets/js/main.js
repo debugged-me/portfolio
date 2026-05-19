@@ -239,118 +239,127 @@
     // GITHUB CONTRIBUTION GRAPH
     // ============================================
     function initContributionGraph() {
+        const section = document.getElementById('github-contributions');
         const graphContainer = document.querySelector('.contribution-graph');
         const yearButtons = document.querySelectorAll('.year-btn');
         const contributionsCount = document.querySelector('.contributions-count');
+        const githubUsername = section ? section.dataset.githubUsername : '';
+        const githubEndpoint = section ? section.dataset.githubEndpoint : '';
+        const contributionCache = new Map();
+        let activeRequestId = 0;
 
-        if (!graphContainer) return;
+        if (!section || !graphContainer || !contributionsCount || !githubUsername || !githubEndpoint) return;
 
-        // Generate realistic contribution data
-        function generateContributionData(year) {
-            const data = [];
-            const startDate = new Date(year, 0, 1);
-            const endDate = new Date(year, 11, 31);
-            const currentDate = new Date();
-
-            for (let d = new Date(startDate); d <= endDate && d <= currentDate; d.setDate(d.getDate() + 1)) {
-                const dayOfWeek = d.getDay();
-                const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-                const isFuture = d > currentDate;
-
-                let contributionLevel = 0;
-                if (!isWeekend && !isFuture) {
-                    // Generate realistic contribution pattern
-                    const random = Math.random();
-                    if (random > 0.85) contributionLevel = 4;
-                    else if (random > 0.7) contributionLevel = 3;
-                    else if (random > 0.5) contributionLevel = 2;
-                    else if (random > 0.3) contributionLevel = 1;
-                }
-
-                data.push({
-                    date: new Date(d),
-                    level: contributionLevel,
-                    contributions: contributionLevel > 0 ? Math.floor(Math.random() * 10) + 1 : 0
-                });
-            }
-
-            return data;
+        function setButtonsDisabled(disabled) {
+            yearButtons.forEach(function(button) {
+                button.disabled = disabled;
+            });
         }
 
-        // Render contribution graph
-        function renderGraph(year) {
-            const data = generateContributionData(year);
-            const totalContributions = data.reduce((sum, day) => sum + day.contributions, 0);
-
-            // Update contribution count
-            if (contributionsCount) {
-                contributionsCount.textContent = `${totalContributions.toLocaleString()} contributions in ${year}`;
+        async function loadContributionData(year) {
+            if (contributionCache.has(year)) {
+                return contributionCache.get(year);
             }
 
-            // Clear and render graph
-            graphContainer.innerHTML = '';
+            const params = new URLSearchParams({
+                username: githubUsername,
+                year: String(year)
+            });
+            const response = await fetch(`${githubEndpoint}?${params.toString()}`, {
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
 
-            // Add weekday labels
-            const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            if (!response.ok) {
+                throw new Error(`Failed to load contribution data for ${year}`);
+            }
+
+            const payload = await response.json();
+            contributionCache.set(year, payload);
+            return payload;
+        }
+
+        function renderGraph(payload) {
+            const year = payload.year;
+            const data = Array.isArray(payload.days) ? payload.days : [];
+            const totalContributions = Number(payload.totalContributions) || 0;
             const startDay = new Date(year, 0, 1).getDay();
+            const totalCells = startDay + data.length;
+            const weeks = Math.max(1, Math.ceil(totalCells / 7));
 
-            // Create empty cells for days before year starts
-            for (let i = 0; i < startDay; i++) {
+            contributionsCount.textContent = `${totalContributions.toLocaleString()} contributions in ${year}`;
+            graphContainer.innerHTML = '';
+            graphContainer.style.gridTemplateColumns = `repeat(${weeks}, minmax(0, 1fr))`;
+
+            for (let i = 0; i < startDay; i += 1) {
                 const emptyCell = document.createElement('div');
                 emptyCell.className = 'contribution-day box-0';
                 graphContainer.appendChild(emptyCell);
             }
 
-            // Create contribution cells
-            data.forEach(day => {
+            data.forEach(function(day) {
                 const cell = document.createElement('div');
                 cell.className = `contribution-day box-${day.level}`;
 
-                // Add tooltip
                 const tooltip = document.createElement('div');
                 tooltip.className = 'contribution-tooltip';
+                const date = new Date(`${day.date}T00:00:00`);
+                const dateStr = date.toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
 
-                if (day.contributions > 0) {
-                    const dateStr = day.date.toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric'
-                    });
-                    tooltip.innerHTML = `
-                        <strong>${day.contributions} contribution${day.contributions > 1 ? 's' : ''}</strong><br>
-                        ${dateStr}
-                    `;
-                } else {
-                    const dateStr = day.date.toLocaleDateString('en-US', {
-                        month: 'short',
-                        day: 'numeric',
-                        year: 'numeric'
-                    });
-                    tooltip.innerHTML = `No contributions<br>${dateStr}`;
-                }
+                tooltip.innerHTML = day.contributions > 0
+                    ? `<strong>${day.contributions} contribution${day.contributions > 1 ? 's' : ''}</strong><br>${dateStr}`
+                    : `No contributions<br>${dateStr}`;
 
                 cell.appendChild(tooltip);
                 graphContainer.appendChild(cell);
             });
         }
 
-        // Year button click handlers
-        yearButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                yearButtons.forEach(btn => btn.classList.remove('active'));
+        async function showYear(year) {
+            const requestId = ++activeRequestId;
+            setButtonsDisabled(true);
+            contributionsCount.textContent = `Loading ${year} contributions...`;
+
+            try {
+                const payload = await loadContributionData(year);
+                if (requestId !== activeRequestId) {
+                    return;
+                }
+
+                renderGraph(payload);
+            } catch (error) {
+                if (requestId !== activeRequestId) {
+                    return;
+                }
+
+                graphContainer.innerHTML = '';
+                contributionsCount.textContent = `Unable to load GitHub contributions for ${year}`;
+            } finally {
+                if (requestId === activeRequestId) {
+                    setButtonsDisabled(false);
+                }
+            }
+        }
+
+        yearButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                yearButtons.forEach(function(btn) {
+                    btn.classList.remove('active');
+                });
                 button.classList.add('active');
-                renderGraph(parseInt(button.dataset.year));
+                showYear(parseInt(button.dataset.year, 10));
             });
         });
 
-        // Initialize with current year
-        const currentYear = new Date().getFullYear();
-        const activeButton = document.querySelector(`[data-year="${currentYear}"]`);
+        const activeButton = document.querySelector('.year-btn.active') || yearButtons[0];
         if (activeButton) {
-            activeButton.classList.add('active');
+            showYear(parseInt(activeButton.dataset.year, 10));
         }
-
-        renderGraph(currentYear);
     }
 
     // Initialize contribution graph
@@ -358,6 +367,101 @@
 
     // Initialize particles
     initParticles();
+
+    // ============================================
+    // CONTACT FORM WITH GOOGLE RECAPTCHA
+    // ============================================
+    function initContactForm() {
+        const contactSection = document.getElementById('contact');
+        const contactForm = document.getElementById('contactForm');
+        if (!contactSection || !contactForm) return;
+
+        const recaptchaSiteKey = contactSection.dataset.recaptchaSiteKey || '';
+        const recaptchaAction = contactSection.dataset.recaptchaAction || 'contact_form';
+        const recaptchaField = contactForm.querySelector('#g-recaptcha-response');
+
+        function resetSubmitButton(submitBtn, originalText, failed) {
+            submitBtn.querySelector('.btn-text').textContent = failed ? 'Failed to Send' : originalText;
+            submitBtn.style.background = failed ? '#ef4444' : '';
+
+            if (failed) {
+                window.setTimeout(function() {
+                    submitBtn.querySelector('.btn-text').textContent = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+                return;
+            }
+
+            submitBtn.disabled = false;
+        }
+
+        // Handle form submission
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const submitBtn = contactForm.querySelector('.contact-submit');
+            const originalText = submitBtn.querySelector('.btn-text').textContent;
+            if (!recaptchaSiteKey || typeof grecaptcha === 'undefined') {
+                alert('reCAPTCHA is not ready yet. Please try again in a moment.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.querySelector('.btn-text').textContent = 'Sending...';
+            submitBtn.style.background = '';
+
+            try {
+                await new Promise(function(resolve) {
+                    grecaptcha.ready(resolve);
+                });
+                const token = await grecaptcha.execute(recaptchaSiteKey, {
+                    action: recaptchaAction
+                });
+
+                if (!token) {
+                    throw new Error('Missing reCAPTCHA token');
+                }
+
+                if (recaptchaField) {
+                    recaptchaField.value = token;
+                }
+
+                const formData = new FormData(contactForm);
+                const response = await fetch('contact.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    submitBtn.querySelector('.btn-text').textContent = 'Message Sent!';
+                    submitBtn.style.background = '#1cff68';
+                    contactForm.reset();
+                    if (recaptchaField) {
+                        recaptchaField.value = '';
+                    }
+
+                    window.setTimeout(function() {
+                        submitBtn.querySelector('.btn-text').textContent = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error(data.message || 'Failed to send message');
+                }
+            } catch (error) {
+                if (recaptchaField) {
+                    recaptchaField.value = '';
+                }
+                resetSubmitButton(submitBtn, originalText, true);
+                console.error('Contact form error:', error);
+            }
+        });
+    }
+
+    // Initialize contact form
+    initContactForm();
 
     window.setTimeout(hideIntro, 1450);
 }());

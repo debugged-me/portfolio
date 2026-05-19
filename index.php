@@ -19,8 +19,13 @@ $config = [
     'status' => 'Available for freelance and full-time opportunities',
     'years_experience' => '6+',
     'hours_worked' => '10K+',
-    'turnstile_secret_key' => getenv('TURNSTILE_SECRET_KEY') ?: '',
+    'github_username' => 'debugged-me',
+    'recaptcha_site_key' => getenv('RECAPTCHA_SITE_KEY') ?: '6Lfd3fEsAAAAAAcmCU2lOlM1wl4yEFfthzNaRVFK',
+    'recaptcha_action' => 'contact_form',
 ];
+
+$currentYear = (int) date('Y');
+$githubYears = range($currentYear, $currentYear - 3);
 
 $socials = [
     [
@@ -39,28 +44,28 @@ $socials = [
 
 $projects = [
     [
+        'title' => 'SRMS Mobile App',
+        'desc' => 'Flutter-based mobile application for students academic records with cross-platform compatibility.',
+        'url' => 'https://play.google.com/store/apps/details?id=com.srms.srms_flutter_project',
+        'tags' => ['Flutter', 'Dart', 'Mobile', 'Android', 'iOS'],
+    ],
+    [
         'title' => 'DOIT College Portal',
         'desc' => 'Academic portal for DOIT College handling enrollment, student records, registrar workflows, and online services.',
         'url' => 'https://portal.doitcollege.com/',
         'tags' => ['PHP', 'CodeIgniter 3', 'MySQL', 'Bootstrap', 'jQuery', 'AJAX', 'DataTables'],
     ],
     [
-        'title' => 'WCManila SRMS',
-        'desc' => 'Student Records Management System focused on grading, enrollment processing, transcript generation, and reporting.',
-        'url' => 'https://wcmanila-srms.com/',
-        'tags' => ['PHP', 'CodeIgniter 3', 'MariaDB', 'Bootstrap', 'jQuery', 'AJAX', 'Select2'],
+        'title' => 'Payroll Management System',
+        'desc' => 'A comprehensive payroll management system built with CodeIgniter PHP framework that handles employee management, attendance tracking, payroll generation (monthly/bimonthly), loan management, deductions, 13th month pay, and reporting.',
+        'url' => 'https://softtech-pms.com/',
+        'tags' => ['PHP', 'CodeIgniter 3', 'MySQL', 'Bootstrap', 'jQuery', 'AJAX', 'DataTables'],
     ],
     [
-        'title' => 'IHMA Mati',
-        'desc' => 'Academic records platform for IHMA Mati supporting records, grading, and institution-wide administrative workflows.',
-        'url' => 'https://srms.ihmamati.edu.ph/',
-        'tags' => ['PHP', 'CodeIgniter 3', 'MySQL', 'Bootstrap', 'jQuery', 'DataTables', 'Select2'],
-    ],
-    [
-        'title' => 'DepEd QAME',
-        'desc' => 'Quality Assurance Monitoring and Evaluation platform for education teams, with dashboards, assessment flows, and review tools.',
-        'url' => 'https://deped-qame.com/',
-        'tags' => ['PHP', 'CodeIgniter 3', 'MariaDB', 'Bootstrap', 'jQuery', 'AJAX', 'DataTables'],
+        'title' => 'FBMSO Portal',
+        'desc' => 'Faculty of Business Management Attendance and Student Records',
+        'url' => 'https://attendance.softtechco.biz/',
+        'tags' => ['PHP', 'CodeIgniter 3', 'MySQL', 'Bootstrap', 'jQuery', 'AJAX', 'DataTables'],
     ],
     [
         'title' => 'DepEd Davao Sports',
@@ -79,31 +84,14 @@ $projects = [
         'desc' => 'AI-powered plagiarism detection tool for academic institutions and educational platforms.',
         'url' => 'https://plagiarism-ai-checker.com',
         'tags' => ['PHP', 'CodeIgniter 3', 'MySQL', 'Bootstrap', 'jQuery', 'AJAX', 'DataTables'],
-    ],
-    [
-        'title' => 'SRMS Mobile App',
-        'desc' => 'Flutter-based mobile application for student records management with cross-platform compatibility and modern UI.',
-        'url' => 'https://play.google.com/store/apps/details?id=com.srms.srms_flutter_project',
-        'tags' => ['Flutter', 'Dart', 'Mobile', 'Android', 'iOS'],
-    ],
-    [
-        'title' => 'SECNCI',
-        'desc' => 'Official website for SECNCI School Records Management System.',
-        'url' => 'https://secnci.com',
-        'tags' => ['PHP', 'HTML5', 'CSS3', 'JavaScript', 'Bootstrap'],
-    ],
-    [
-        'title' => 'KCast Online',
-        'desc' => 'Official website for SECNCI School Records Management System',
-        'url' => 'https://kcast.online',
-        'tags' => ['PHP', 'MySQL', 'Bootstrap', 'jQuery', 'AJAX', 'JavaScript'],
-    ],
+    ]
+
 ];
 
 $experience = [
     [
         'company' => 'SoftTech Services',
-        'position' => 'Full-Stack Developer',
+        'position' => 'Web & Mobile Developer',
         'period' => '2023 - Present',
     ],
     [
@@ -176,6 +164,7 @@ $stackGroups = [
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto+Flex:wght@100;300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://www.google.com/recaptcha/api.js?render=<?php echo rawurlencode($config['recaptcha_site_key']); ?>" async defer></script>
 </head>
 
 <body class="intro-active">
@@ -343,7 +332,7 @@ $stackGroups = [
                 </div>
             </section>
 
-            <section class="section" id="github-contributions">
+            <section class="section" id="github-contributions" data-github-username="<?php echo htmlspecialchars($config['github_username'], ENT_QUOTES, 'UTF-8'); ?>" data-github-endpoint="github-contributions.php">
                 <div class="container">
                     <h2 class="section-heading reveal" style="margin-bottom: 2rem;">GitHub Contributions</h2>
                     <p class="github-description reveal" style="margin-bottom: 1.5rem; color: var(--muted); font-size: 0.95rem;">
@@ -351,12 +340,11 @@ $stackGroups = [
                     </p>
                     <div class="contribution-graph-container reveal">
                         <div class="contribution-header">
-                            <span class="contributions-count">1,267 contributions in 2026</span>
+                            <span class="contributions-count">Loading GitHub contributions...</span>
                             <div class="year-selector">
-                                <button class="year-btn active" data-year="2026">2026</button>
-                                <button class="year-btn" data-year="2025">2025</button>
-                                <button class="year-btn" data-year="2024">2024</button>
-                                <button class="year-btn" data-year="2023">2023</button>
+                                <?php foreach ($githubYears as $year): ?>
+                                    <button class="year-btn<?php echo $year === $currentYear ? ' active' : ''; ?>" data-year="<?php echo htmlspecialchars((string) $year, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars((string) $year, ENT_QUOTES, 'UTF-8'); ?></button>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                         <div class="contribution-graph"></div>
@@ -415,13 +403,32 @@ $stackGroups = [
                 </div>
             </section>
 
-            <footer class="contact-footer" id="contact">
+            <footer class="contact-footer" id="contact" data-recaptcha-site-key="<?php echo htmlspecialchars($config['recaptcha_site_key'], ENT_QUOTES, 'UTF-8'); ?>" data-recaptcha-action="<?php echo htmlspecialchars($config['recaptcha_action'], ENT_QUOTES, 'UTF-8'); ?>">
                 <div class="container footer-shell">
                     <div class="footer-main">
-                        <p class="reveal">Have a project in mind?</p>
-                        <a class="contact-mail reveal" href="mailto:<?php echo htmlspecialchars($config['email'], ENT_QUOTES, 'UTF-8'); ?>">
-                            <?php echo htmlspecialchars($config['email'], ENT_QUOTES, 'UTF-8'); ?>
-                        </a>
+                        <div class="contact-card reveal">
+                            <p class="contact-card-title">Have a project in mind?</p>
+                            <p class="contact-card-subtitle">Let's discuss how I can help bring your ideas to life.</p>
+
+                            <form id="contactForm" class="contact-form" method="post" action="contact.php">
+                                <div class="form-group">
+                                    <input type="text" name="name" placeholder="Your Name" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" name="email" placeholder="Your Email" required>
+                                </div>
+                                <div class="form-group">
+                                    <textarea name="message" placeholder="Tell me about your project..." rows="4" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+
+                                </div>
+                                <button type="submit" class="contact-submit">
+                                    <span class="btn-text">Send Message</span>
+                                </button>
+                            </form>
+                        </div>
                     </div>
 
                     <a class="credit reveal" href="#home">
