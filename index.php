@@ -44,8 +44,14 @@ $socials = [
 
 $projects = [
     [
-        'title' => 'SRMS Mobile App',
+        'title' => 'mySRMS Mobile App',
         'desc' => 'Flutter-based mobile application for students academic records with cross-platform compatibility.',
+        'url' => 'https://play.google.com/store/apps/details?id=com.srms.srms_flutter_project',
+        'tags' => ['Flutter', 'Dart', 'Mobile', 'Android', 'iOS'],
+    ],
+    [
+        'title' => 'BERPS Mobile App',
+        'desc' => 'Flutter-based Business Resource Planning System built for task management, invoicing, and job order processing so every team stays aligned from request to delivery..',
         'url' => 'https://play.google.com/store/apps/details?id=com.srms.srms_flutter_project',
         'tags' => ['Flutter', 'Dart', 'Mobile', 'Android', 'iOS'],
     ],
