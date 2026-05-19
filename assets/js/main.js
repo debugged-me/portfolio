@@ -379,6 +379,18 @@
         const recaptchaSiteKey = contactSection.dataset.recaptchaSiteKey || '';
         const recaptchaAction = contactSection.dataset.recaptchaAction || 'contact_form';
         const recaptchaField = contactForm.querySelector('#g-recaptcha-response');
+        const statusNode = document.getElementById('contactStatus');
+
+        function setStatus(message, state) {
+            if (!statusNode) return;
+
+            statusNode.textContent = message || '';
+            statusNode.classList.remove('is-success', 'is-error');
+
+            if (state === 'success' || state === 'error') {
+                statusNode.classList.add(`is-${state}`);
+            }
+        }
 
         function resetSubmitButton(submitBtn, originalText, failed) {
             submitBtn.querySelector('.btn-text').textContent = failed ? 'Failed to Send' : originalText;
@@ -402,29 +414,34 @@
 
             const submitBtn = contactForm.querySelector('.contact-submit');
             const originalText = submitBtn.querySelector('.btn-text').textContent;
-            if (!recaptchaSiteKey || typeof grecaptcha === 'undefined') {
-                alert('reCAPTCHA is not ready yet. Please try again in a moment.');
-                return;
-            }
 
             submitBtn.disabled = true;
             submitBtn.querySelector('.btn-text').textContent = 'Sending...';
             submitBtn.style.background = '';
+            setStatus('', '');
 
             try {
-                await new Promise(function(resolve) {
-                    grecaptcha.ready(resolve);
-                });
-                const token = await grecaptcha.execute(recaptchaSiteKey, {
-                    action: recaptchaAction
-                });
+                if (recaptchaSiteKey) {
+                    if (typeof grecaptcha === 'undefined') {
+                        throw new Error('reCAPTCHA is still loading. Please try again in a moment.');
+                    }
 
-                if (!token) {
-                    throw new Error('Missing reCAPTCHA token');
-                }
+                    await new Promise(function(resolve) {
+                        grecaptcha.ready(resolve);
+                    });
+                    const token = await grecaptcha.execute(recaptchaSiteKey, {
+                        action: recaptchaAction
+                    });
 
-                if (recaptchaField) {
-                    recaptchaField.value = token;
+                    if (!token) {
+                        throw new Error('Missing reCAPTCHA token');
+                    }
+
+                    if (recaptchaField) {
+                        recaptchaField.value = token;
+                    }
+                } else if (recaptchaField) {
+                    recaptchaField.value = '';
                 }
 
                 const formData = new FormData(contactForm);
@@ -432,11 +449,22 @@
                     method: 'POST',
                     body: formData
                 });
-                const data = await response.json();
+                let data = null;
+
+                try {
+                    data = await response.json();
+                } catch (jsonError) {
+                    throw new Error('The contact endpoint returned an invalid response.');
+                }
+
+                if (!response.ok) {
+                    throw new Error(data && data.message ? data.message : 'Failed to send message');
+                }
 
                 if (data.success) {
                     submitBtn.querySelector('.btn-text').textContent = 'Message Sent!';
                     submitBtn.style.background = '#1cff68';
+                    setStatus(data.message || 'Message sent successfully.', 'success');
                     contactForm.reset();
                     if (recaptchaField) {
                         recaptchaField.value = '';
@@ -454,6 +482,7 @@
                 if (recaptchaField) {
                     recaptchaField.value = '';
                 }
+                setStatus(error.message || 'Failed to send message.', 'error');
                 resetSubmitButton(submitBtn, originalText, true);
                 console.error('Contact form error:', error);
             }

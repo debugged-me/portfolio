@@ -804,6 +804,14 @@ button {
     font-size: 2rem;
 }
 
+.stack-skill-badge-text {
+    font-family: var(--body);
+    font-size: 0.95rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+}
+
 .stack-skill-badge::before {
     content: '';
     position: absolute;
@@ -1455,6 +1463,21 @@ button {
     transform: none;
 }
 
+.contact-status {
+    min-height: 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: var(--muted);
+}
+
+.contact-status.is-success {
+    color: #1cff68;
+}
+
+.contact-status.is-error {
+    color: #ff8a8a;
+}
+
 .recaptcha-note {
     margin: 0.5rem 0;
     color: var(--muted);
@@ -1465,4 +1488,398 @@ button {
 
 .recaptcha-note a {
     color: var(--accent);
+}
+
+.error-page {
+    min-height: 100vh;
+}
+
+.error-shell {
+    min-height: 100vh;
+}
+
+.error-shell::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 3.75rem 3.75rem;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 90%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.error-header {
+    padding-bottom: 1rem;
+}
+
+.error-main {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - 6rem);
+    padding: 3rem 0 4rem;
+}
+
+.error-hero {
+    width: 100%;
+}
+
+.error-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(18rem, 24rem);
+    gap: 2rem;
+    align-items: center;
+}
+
+.error-copy {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 1.6rem;
+    backdrop-filter: blur(10px);
+}
+
+.error-copy {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(2rem, 5vw, 4rem);
+}
+
+.error-copy::after {
+    content: "";
+    position: absolute;
+    inset: auto auto -3rem -3rem;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(104, 207, 255, 0.28) 0%, rgba(104, 207, 255, 0) 72%);
+    pointer-events: none;
+}
+
+.error-kicker {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-size: 0.78rem;
+}
+
+.error-code {
+    margin-top: 1rem;
+    font-family: var(--anton);
+    font-size: clamp(5rem, 16vw, 10rem);
+    line-height: 0.86;
+    color: var(--accent);
+}
+
+.error-title {
+    margin-top: 1rem;
+    font-family: var(--anton);
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    max-width: 10ch;
+}
+
+.error-description {
+    margin-top: 1.35rem;
+    max-width: 36rem;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.error-mascot-stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28rem;
+}
+
+.error-mascot-stage::before {
+    content: "";
+    position: absolute;
+    width: min(24rem, 80%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(104, 207, 255, 0.18) 0%, rgba(104, 207, 255, 0.03) 58%, transparent 72%);
+    filter: blur(2px);
+}
+
+.error-mascot {
+    position: relative;
+    width: 14rem;
+    height: 19rem;
+    animation: mascotFloat 3.8s ease-in-out infinite;
+}
+
+.error-mascot-antenna {
+    position: absolute;
+    top: 0.8rem;
+    left: 50%;
+    width: 0.3rem;
+    height: 2.2rem;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(104, 207, 255, 0.5));
+    border-radius: 999px;
+    transform: translateX(-50%);
+}
+
+.error-mascot-antenna::before {
+    content: "";
+    position: absolute;
+    top: -0.65rem;
+    left: 50%;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #9be9ff;
+    box-shadow: 0 0 18px rgba(104, 207, 255, 0.7);
+    transform: translateX(-50%);
+    animation: mascotAntennaPulse 1.8s ease-in-out infinite;
+}
+
+.error-mascot-head {
+    position: absolute;
+    top: 2.6rem;
+    left: 50%;
+    width: 9rem;
+    height: 8rem;
+    border-radius: 2.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: linear-gradient(180deg, rgba(249, 252, 255, 0.2), rgba(88, 144, 170, 0.16));
+    box-shadow: 0 20px 55px rgba(0, 0, 0, 0.24);
+    transform: translateX(-50%);
+    backdrop-filter: blur(10px);
+}
+
+.error-mascot-head::before {
+    content: "";
+    position: absolute;
+    inset: 1rem 1rem auto;
+    height: 3.1rem;
+    border-radius: 999px;
+    background: rgba(18, 23, 28, 0.86);
+}
+
+.error-mascot-eye {
+    position: absolute;
+    top: 2.05rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background: #7fe2ff;
+    box-shadow: 0 0 14px rgba(104, 207, 255, 0.9);
+    animation: mascotBlink 4.2s infinite;
+}
+
+.error-mascot-eye:first-of-type {
+    left: 2.5rem;
+}
+
+.error-mascot-eye:last-of-type {
+    right: 2.5rem;
+}
+
+.error-mascot-mouth {
+    position: absolute;
+    left: 50%;
+    bottom: 1.35rem;
+    width: 2.6rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: rgba(104, 207, 255, 0.88);
+    box-shadow: 0 0 12px rgba(104, 207, 255, 0.45);
+    transform: translateX(-50%);
+}
+
+.error-mascot-body {
+    position: absolute;
+    left: 50%;
+    bottom: 3.2rem;
+    width: 7.5rem;
+    height: 6.5rem;
+    border-radius: 2rem 2rem 2.4rem 2.4rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(104, 207, 255, 0.1));
+    transform: translateX(-50%);
+    backdrop-filter: blur(8px);
+}
+
+.error-mascot-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, #d9fbff 0%, #68cfff 45%, rgba(104, 207, 255, 0.18) 100%);
+    box-shadow: 0 0 24px rgba(104, 207, 255, 0.55);
+    transform: translate(-50%, -50%);
+    animation: mascotCorePulse 2s ease-in-out infinite;
+}
+
+.error-mascot-arm,
+.error-mascot-leg {
+    position: absolute;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.7), rgba(104, 207, 255, 0.4));
+    border-radius: 999px;
+}
+
+.error-mascot-arm {
+    top: 11.2rem;
+    width: 0.7rem;
+    height: 4.5rem;
+    transform-origin: top center;
+}
+
+.error-mascot-arm--left {
+    left: 2.25rem;
+    transform: rotate(28deg);
+    animation: mascotWaveLeft 2.8s ease-in-out infinite;
+}
+
+.error-mascot-arm--right {
+    right: 2.25rem;
+    transform: rotate(-22deg);
+    animation: mascotWaveRight 3.2s ease-in-out infinite;
+}
+
+.error-mascot-leg {
+    bottom: 0.4rem;
+    width: 0.8rem;
+    height: 3.8rem;
+}
+
+.error-mascot-leg--left {
+    left: 5rem;
+    transform: rotate(8deg);
+}
+
+.error-mascot-leg--right {
+    right: 5rem;
+    transform: rotate(-8deg);
+}
+
+.error-mascot-shadow {
+    position: absolute;
+    bottom: 1.4rem;
+    width: 10rem;
+    height: 1.4rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.22);
+    filter: blur(10px);
+    animation: mascotShadow 3.8s ease-in-out infinite;
+}
+
+@keyframes mascotFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+@keyframes mascotShadow {
+    0%,
+    100% {
+        transform: scaleX(1);
+        opacity: 0.28;
+    }
+
+    50% {
+        transform: scaleX(0.84);
+        opacity: 0.18;
+    }
+}
+
+@keyframes mascotAntennaPulse {
+    0%,
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        transform: translateX(-50%) scale(1.12);
+    }
+}
+
+@keyframes mascotCorePulse {
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.12);
+    }
+}
+
+@keyframes mascotBlink {
+    0%,
+    44%,
+    48%,
+    100% {
+        transform: scaleY(1);
+    }
+
+    46% {
+        transform: scaleY(0.12);
+    }
+}
+
+@keyframes mascotWaveLeft {
+    0%,
+    100% {
+        transform: rotate(28deg);
+    }
+
+    50% {
+        transform: rotate(44deg);
+    }
+}
+
+@keyframes mascotWaveRight {
+    0%,
+    100% {
+        transform: rotate(-22deg);
+    }
+
+    50% {
+        transform: rotate(-36deg);
+    }
+}
+
+@media (max-width: 900px) {
+    .error-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .error-mascot-stage {
+        min-height: 22rem;
+        order: -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .error-main {
+        min-height: auto;
+        padding-top: 2rem;
+    }
+
+    .error-header {
+        justify-content: center;
+    }
+
+    .error-copy {
+        border-radius: 1.2rem;
+    }
+
+    .error-mascot {
+        width: 11.8rem;
+        height: 16rem;
+    }
 }

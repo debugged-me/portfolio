@@ -1,0 +1,8 @@
+<?php
+
+return [
+    'site_key' => 'your-recaptcha-site-key',
+    'secret_key' => 'your-recaptcha-secret-key',
+    'action' => 'contact_form',
+    'minimum_score' => 0.5,
+];

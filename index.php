@@ -5,10 +5,14 @@
  * EDONG, CLARK STEVEN T. | Mati City, Philippines
  */
 
+require_once __DIR__ . '/recaptcha-config.php';
+
+$recaptchaConfig = getRecaptchaConfig();
+
 $config = [
     'name' => 'EDONG, CLARK STEVEN T.',
     'short_name' => 'CLARkODER',
-    'first_name' => 'Clark',
+    'first_name' => 'Clark  Steven',
     'last_name' => 'Edong',
     'age' => 27,
     'subtitle' => 'Full-Stack Developer',
@@ -20,8 +24,8 @@ $config = [
     'years_experience' => '6+',
     'hours_worked' => '10K+',
     'github_username' => 'debugged-me',
-    'recaptcha_site_key' => getenv('RECAPTCHA_SITE_KEY') ?: '6Lfd3fEsAAAAAAcmCU2lOlM1wl4yEFfthzNaRVFK',
-    'recaptcha_action' => 'contact_form',
+    'recaptcha_site_key' => $recaptchaConfig['site_key'],
+    'recaptcha_action' => $recaptchaConfig['action'],
 ];
 
 $currentYear = (int) date('Y');
@@ -120,7 +124,7 @@ $stackGroups = [
             ['name' => 'PHP', 'icon' => 'devicon-php-plain', 'tone' => '#777bb4', 'text' => '#ffffff'],
             ['name' => 'CodeIgniter 3', 'icon' => 'devicon-codeigniter-plain', 'tone' => '#ee4323', 'text' => '#ffffff'],
             ['name' => 'Laravel', 'icon' => 'devicon-laravel-original', 'tone' => '#ff2d20', 'text' => '#ffffff'],
-            ['name' => 'REST APIs', 'icon' => 'devicon-api-plain', 'tone' => '#1cff68', 'text' => '#111111'],
+            ['name' => 'REST APIs', 'badge' => 'API', 'tone' => '#1cff68', 'text' => '#111111'],
         ],
     ],
     [
@@ -136,28 +140,10 @@ $stackGroups = [
         'items' => [
             ['name' => 'Bootstrap', 'icon' => 'devicon-bootstrap-plain', 'tone' => '#7952b3', 'text' => '#ffffff'],
             ['name' => 'jQuery', 'icon' => 'devicon-jquery-plain', 'tone' => '#0769ad', 'text' => '#ffffff'],
-            ['name' => 'AJAX', 'icon' => 'devicon-ajax-plain', 'tone' => '#5a5a5a', 'text' => '#ffffff'],
+            ['name' => 'AJAX', 'badge' => 'AJ', 'tone' => '#5a5a5a', 'text' => '#ffffff'],
             ['name' => 'JavaScript', 'icon' => 'devicon-javascript-plain', 'tone' => '#f7df1e', 'text' => '#111111'],
             ['name' => 'HTML5', 'icon' => 'devicon-html5-plain', 'tone' => '#e34c26', 'text' => '#ffffff'],
             ['name' => 'CSS3', 'icon' => 'devicon-css3-plain', 'tone' => '#1572b6', 'text' => '#ffffff'],
-        ],
-    ],
-    [
-        'label' => 'Libraries',
-        'items' => [
-            ['name' => 'DataTables', 'icon' => 'devicon-datatables-plain', 'tone' => '#3399ff', 'text' => '#ffffff'],
-            ['name' => 'Select2', 'icon' => 'devicon-select2-plain', 'tone' => '#5897fb', 'text' => '#ffffff'],
-            ['name' => 'Chart.js', 'icon' => 'devicon-chartjs-plain', 'tone' => '#ff6384', 'text' => '#ffffff'],
-        ],
-    ],
-    [
-        'label' => 'Tools',
-        'items' => [
-            ['name' => 'Git', 'icon' => 'devicon-git-plain', 'tone' => '#f1502f', 'text' => '#ffffff'],
-            ['name' => 'VS Code', 'icon' => 'devicon-vscode-plain', 'tone' => '#007acc', 'text' => '#ffffff'],
-            ['name' => 'Linux', 'icon' => 'devicon-linux-plain', 'tone' => '#facc15', 'text' => '#111111'],
-            ['name' => 'Apache', 'icon' => 'devicon-apache-plain', 'tone' => '#d22128', 'text' => '#ffffff'],
-            ['name' => 'XAMPP', 'icon' => 'devicon-xampp-plain', 'tone' => '#fb7a24', 'text' => '#ffffff'],
         ],
     ],
 ];
@@ -335,7 +321,11 @@ $stackGroups = [
                                             <span
                                                 class="stack-skill-badge"
                                                 style="--badge-color: <?php echo htmlspecialchars($item['tone'], ENT_QUOTES, 'UTF-8'); ?>; --badge-text: <?php echo htmlspecialchars($item['text'], ENT_QUOTES, 'UTF-8'); ?>;">
-                                                <i class="<?php echo htmlspecialchars($item['icon'], ENT_QUOTES, 'UTF-8'); ?>"></i>
+                                                <?php if (!empty($item['icon'])): ?>
+                                                    <i class="<?php echo htmlspecialchars($item['icon'], ENT_QUOTES, 'UTF-8'); ?>" aria-hidden="true"></i>
+                                                <?php elseif (!empty($item['badge'])): ?>
+                                                    <span class="stack-skill-badge-text" aria-hidden="true"><?php echo htmlspecialchars($item['badge'], ENT_QUOTES, 'UTF-8'); ?></span>
+                                                <?php endif; ?>
                                             </span>
                                             <span class="stack-skill-name"><?php echo htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8'); ?></span>
                                         </span>
@@ -437,11 +427,11 @@ $stackGroups = [
                                 </div>
                                 <div class="form-group">
                                     <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
-
                                 </div>
                                 <button type="submit" class="contact-submit">
                                     <span class="btn-text">Send Message</span>
                                 </button>
+                                <p class="contact-status" id="contactStatus" aria-live="polite"></p>
                             </form>
                         </div>
                     </div>

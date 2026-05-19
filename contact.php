@@ -7,12 +7,15 @@
 
 header('Content-Type: application/json');
 
+require_once __DIR__ . '/recaptcha-config.php';
+
+$recaptchaConfig = getRecaptchaConfig();
 $recipientEmail = 'clarksteven.edong@softtechservices.net';
 $siteName = 'CLARkODER Portfolio';
-$recaptchaSecret = getenv('RECAPTCHA_SECRET_KEY') ?: '';
+$recaptchaSecret = $recaptchaConfig['secret_key'];
 $storagePath = __DIR__ . '/storage/contact-submissions.log';
-$recaptchaExpectedAction = 'contact_form';
-$recaptchaMinimumScore = 0.5;
+$recaptchaExpectedAction = $recaptchaConfig['action'];
+$recaptchaMinimumScore = $recaptchaConfig['minimum_score'];
 
 function sendResponse($success, $message, $extra = [])
 {
@@ -133,22 +136,11 @@ function storeSubmission($storagePath, $payload)
     return false;
 }
 
-// Include SMTP configuration if available
-if (file_exists(__DIR__ . '/phpmailer-config.php')) {
-    require_once __DIR__ . '/phpmailer-config.php';
-}
-
-function sendMailMessage($recipientEmail, $siteName, $name, $email, $subject, $messageBody)
+function sendMailWithNativeMail($recipientEmail, $siteName, $name, $email, $subject, $messageBody)
 {
-    // Try SMTP first if available
-    if (function_exists('sendMailWithSMTP')) {
-        return sendMailWithSMTP($recipientEmail, $siteName, $name, $email, $subject, $messageBody);
-    }
-
-    // Fallback to regular PHP mail()
     $recipientDomain = substr(strrchr($recipientEmail, '@'), 1) ?: 'localhost';
     $fromEmail = filter_var('noreply@' . $recipientDomain, FILTER_VALIDATE_EMAIL) ?: $recipientEmail;
-    $mailSubject = '[' . $siteName . '] New Message: ' . $subject;
+    $mailSubject = '[' . $siteName . '] ' . $subject . ' from ' . $name . ' <' . $email . '>';
 
     $body = "Name: {$name}\n";
     $body .= "Email: {$email}\n";
@@ -172,7 +164,34 @@ function sendMailMessage($recipientEmail, $siteName, $name, $email, $subject, $m
         $mailSent = @mail($recipientEmail, $mailSubject, $body, $headers);
     }
 
-    return $mailSent;
+    return [
+        'success' => $mailSent,
+        'transport' => 'php-mail',
+        'error' => $mailSent ? '' : 'PHP mail() returned false.',
+    ];
+}
+
+// Include SMTP configuration if available
+if (file_exists(__DIR__ . '/phpmailer-config.php')) {
+    require_once __DIR__ . '/phpmailer-config.php';
+}
+
+function sendMailMessage($recipientEmail, $siteName, $name, $email, $subject, $messageBody)
+{
+    $smtpAvailability = function_exists('getSmtpAvailabilityStatus')
+        ? getSmtpAvailabilityStatus()
+        : ['ready' => false, 'reason' => 'SMTP status unavailable.'];
+
+    // If SMTP is configured or intended for this deployment, do not silently
+    // fall back to native mail because that hides production routing issues.
+    if (function_exists('sendMailWithSMTP')) {
+        $smtpResult = sendMailWithSMTP($recipientEmail, $siteName, $name, $email, $subject, $messageBody);
+        if (($smtpAvailability['ready'] ?? false) || !empty(getMailConfig()['host']) || !empty(getMailConfig()['username'])) {
+            return $smtpResult;
+        }
+    }
+
+    return sendMailWithNativeMail($recipientEmail, $siteName, $name, $email, $subject, $messageBody);
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -193,8 +212,14 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     sendResponse(false, 'Invalid email address.');
 }
 
+$currentHost = getCurrentHost();
+
 if ($recaptchaSecret === '') {
-    sendResponse(false, 'reCAPTCHA is not configured on this server yet.');
+    sendResponse(false, 'reCAPTCHA secret is missing. Set secret_key in recaptcha-config.local.php.');
+}
+
+if ($recaptchaSecret === 'paste-your-recaptcha-secret-key-here') {
+    sendResponse(false, 'reCAPTCHA secret is still a placeholder. Update recaptcha-config.local.php with your real secret key.');
 }
 
 if ($recaptchaToken === '') {
@@ -209,7 +234,6 @@ if (!is_array($verification) || empty($verification['success'])) {
 $verifiedAction = isset($verification['action']) ? (string) $verification['action'] : '';
 $verifiedScore = isset($verification['score']) ? (float) $verification['score'] : 0.0;
 $verifiedHostname = isset($verification['hostname']) ? strtolower((string) $verification['hostname']) : '';
-$currentHost = getCurrentHost();
 
 if ($verifiedAction !== $recaptchaExpectedAction) {
     sendResponse(false, 'reCAPTCHA action mismatch.');
@@ -237,7 +261,8 @@ $subjectLabels = [
 
 $subjectLabel = isset($subjectLabels[$subject]) ? $subjectLabels[$subject] : 'General Inquiry';
 
-$mailSent = sendMailMessage($recipientEmail, $siteName, $name, $email, $subjectLabel, $message);
+$mailResult = sendMailMessage($recipientEmail, $siteName, $name, $email, $subjectLabel, $message);
+$mailSent = !empty($mailResult['success']);
 $loggedPath = storeSubmission($storagePath, [
     'name' => $name,
     'email' => $email,
@@ -247,6 +272,9 @@ $loggedPath = storeSubmission($storagePath, [
     'host' => $_SERVER['HTTP_HOST'] ?? 'unknown',
     'created_at' => date('c'),
     'mail_sent' => $mailSent,
+    'mail_transport' => $mailResult['transport'] ?? 'unknown',
+    'mail_error' => $mailResult['error'] ?? '',
+    'mail_message_id' => $mailResult['message_id'] ?? '',
     'recaptcha_score' => $verifiedScore,
     'recaptcha_action' => $verifiedAction,
 ]);
@@ -255,13 +283,37 @@ $logged = $loggedPath !== false;
 if ($mailSent) {
     sendResponse(true, 'Message sent successfully. Check your inbox for my reply.', [
         'logged' => $logged,
+        'transport' => $mailResult['transport'] ?? 'unknown',
     ]);
 }
 
+if (function_exists('mailConfigHasPlaceholderValues') && mailConfigHasPlaceholderValues()) {
+    sendResponse(false, 'SMTP is still using placeholder values. Update mail-config.local.php with your real SMTP credentials.', [
+        'logged' => $logged,
+        'stored' => $logged ? basename((string) $loggedPath) : null,
+    ]);
+}
+
+if (function_exists('getMailConfigMissingFields')) {
+    $missingMailFields = getMailConfigMissingFields();
+    if ($missingMailFields !== []) {
+        sendResponse(false, 'SMTP is not configured. Fill these fields in mail-config.local.php: ' . implode(', ', $missingMailFields) . '.', [
+            'logged' => $logged,
+            'stored' => $logged ? basename((string) $loggedPath) : null,
+        ]);
+    }
+}
+
 if ($logged) {
-    sendResponse(false, 'Message saved, but email delivery failed on this server. Local XAMPP usually needs SMTP or sendmail setup before PHP mail() works.', [
+    $failureMessage = 'Message saved, but email delivery failed on this server.';
+    if (!empty($mailResult['error'])) {
+        $failureMessage .= ' ' . $mailResult['error'];
+    }
+
+    sendResponse(false, $failureMessage, [
         'logged' => true,
         'stored' => basename((string) $loggedPath),
+        'transport' => $mailResult['transport'] ?? 'unknown',
     ]);
 }
 
