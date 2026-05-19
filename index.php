@@ -56,6 +56,12 @@ $projects = [
         'tags' => ['Flutter', 'Dart', 'Mobile', 'Android', 'iOS'],
     ],
     [
+        'title' => 'Database Studio',
+        'desc' => 'DB Manager — a drop-in alternative to phpMyAdmin/Workbench for moving data between MySQL instances. One PHP file handles import and export with real-time line counters, oversized-row auto-fixes, and gzip support. The deployed app sits behind a bcrypt-hashed password gate (no plaintext in source) with brute-force lockout and Google reCAPTCHA v3 on every form. Bundled as a password-protected ZIP with a custom animated landing page so users can self-deploy in minutes.',
+        'url' => 'https://dbmanager.softtechco.biz',
+        'tags' => ['PHP', 'MySQL/MariaDB', 'BCRYPT', 'reCAPTCHA', 'zero dependencies'],
+    ],
+    [
         'title' => 'DOIT College Portal',
         'desc' => 'Academic portal for DOIT College handling enrollment, student records, registrar workflows, and online services.',
         'url' => 'https://portal.doitcollege.com/',
