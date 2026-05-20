@@ -98,7 +98,7 @@ $projects = [
     [
         'title' => 'Plagiarism AI Checker',
         'desc' => 'AI-powered plagiarism detection tool for academic institutions and educational platforms.',
-        'url' => 'https://plagia.srmsportal.com',
+        'url' => 'https://plagia.srmsportal.online',
         'tags' => ['PHP', 'CodeIgniter 3', 'MySQL', 'Bootstrap', 'jQuery', 'AJAX', 'DataTables'],
     ]
 
