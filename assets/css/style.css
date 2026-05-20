@@ -128,6 +128,8 @@ button {
     color: #d9d9d9;
     white-space: nowrap;
     overflow: hidden;
+    max-width: calc(100vw - 2rem);
+    justify-content: center;
 }
 
 .intro-name span {
@@ -248,7 +250,7 @@ button {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    z-index: 30;
+    z-index: 50;
     backdrop-filter: blur(2px);
 }
 
@@ -262,7 +264,7 @@ button {
     background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 50%, #1a1a1a 100%);
     transform: translateX(100%);
     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-    z-index: 35;
+    z-index: 55;
     overflow: hidden;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
 }
@@ -282,6 +284,10 @@ button {
 
 .menu-open .drawer {
     transform: translateX(0);
+}
+
+.menu-open .site-header {
+    pointer-events: none;
 }
 
 .drawer-grid {
@@ -327,6 +333,7 @@ button {
     letter-spacing: 0.02em;
     border-radius: 0.4rem;
     margin: -0.1rem 0;
+    overflow-wrap: anywhere;
 }
 
 .drawer-link:hover {
@@ -872,6 +879,10 @@ button {
     transition: opacity 0.28s ease;
 }
 
+.project-row > div {
+    min-width: 0;
+}
+
 .project-list:hover .project-row {
     opacity: 0.36;
 }
@@ -909,6 +920,7 @@ button {
     max-width: 34rem;
     color: var(--muted);
     line-height: 1.7;
+    overflow-wrap: anywhere;
 }
 
 .project-tags {
@@ -1038,6 +1050,8 @@ button {
 .year-selector {
     display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .year-btn {
@@ -1203,6 +1217,7 @@ button {
 
     .year-selector {
         order: -1;
+        justify-content: flex-start;
     }
 
     .contributions-count {
@@ -1367,6 +1382,178 @@ button {
 
     .project-link-note {
         grid-column: auto;
+        justify-self: flex-start;
+    }
+}
+
+@media (max-width: 640px) {
+    .container,
+    .site-header {
+        width: min(var(--container), calc(100% - 1.25rem));
+    }
+
+    .intro-name {
+        font-size: clamp(3rem, 14vw, 4.75rem);
+        line-height: 0.95;
+        white-space: normal;
+        flex-wrap: wrap;
+    }
+
+    .brand {
+        font-size: 1.25rem;
+    }
+
+    .menu-toggle,
+    .drawer-close {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .drawer {
+        width: 100vw;
+        padding: 5.75rem 1rem 2rem;
+    }
+
+    .drawer-close {
+        top: 0.9rem;
+        right: 1rem;
+    }
+
+    .drawer-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-width: none;
+        padding-top: 0;
+        overflow-y: auto;
+        padding-right: 0.25rem;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 4rem 0 2rem;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 17vw, 4.15rem);
+    }
+
+    .hero-title .offset {
+        margin-left: 0;
+    }
+
+    .hero-description,
+    .split-copy p {
+        font-size: 1rem;
+    }
+
+    .hero-arrow {
+        display: none;
+    }
+
+    .section {
+        padding-bottom: 7rem;
+    }
+
+    .lead-section h2 {
+        margin-bottom: 2.5rem;
+    }
+
+    .section-kicker {
+        align-items: flex-start;
+    }
+
+    .stack-skill-list {
+        gap: 1rem;
+    }
+
+    .stack-skill {
+        align-items: flex-start;
+        font-size: 1rem;
+    }
+
+    .stack-skill-name {
+        white-space: normal;
+    }
+
+    .project-title {
+        font-size: clamp(2rem, 11vw, 2.8rem);
+    }
+
+    .project-description {
+        max-width: none;
+        font-size: 0.98rem;
+    }
+
+    .contact-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+
+    .contact-card-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .contribution-graph-container {
+        transform: none;
+        overflow-x: auto;
+        padding-bottom: 0.5rem;
+    }
+
+    .contribution-graph {
+        width: max-content;
+        min-width: 100%;
+        grid-auto-columns: 0.72rem;
+        gap: 3px;
+        padding: 0.85rem;
+    }
+
+    .contribution-day {
+        width: 0.72rem;
+        height: 0.72rem;
+        border-radius: 2px;
+    }
+
+    .contribution-tooltip {
+        display: none;
+    }
+
+    .contributions-count {
+        font-size: 1rem;
+    }
+
+    .year-btn {
+        padding: 0.35rem 0.65rem;
+        font-size: 0.82rem;
+    }
+
+    .credit {
+        font-size: 0.88rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-submit {
+        width: 100%;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .project-list:hover .project-row,
+    .project-list:hover .project-row:hover {
+        opacity: 1;
+    }
+
+    .project-row:hover .project-title {
+        background-position: right;
+    }
+
+    .stack-skill:hover,
+    .contribution-day:hover {
+        transform: none;
     }
 }
 
@@ -1376,6 +1563,7 @@ button {
     border-radius: 1.2rem;
     padding: 2.5rem;
     max-width: 48rem;
+    width: 100%;
     margin: 0 auto;
     text-align: center;
 }

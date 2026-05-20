@@ -12,7 +12,7 @@ $recaptchaConfig = getRecaptchaConfig();
 $config = [
     'name' => 'EDONG, CLARK STEVEN T.',
     'short_name' => 'CLARkODER',
-    'first_name' => 'Clark  Steven',
+    'first_name' => 'Clark Steven',
     'last_name' => 'Edong',
     'age' => 27,
     'subtitle' => 'Full-Stack Developer',
@@ -98,7 +98,7 @@ $projects = [
     [
         'title' => 'Plagiarism AI Checker',
         'desc' => 'AI-powered plagiarism detection tool for academic institutions and educational platforms.',
-        'url' => 'https://plagiarism-ai-checker.com',
+        'url' => 'https://plagia.srmsportal.com',
         'tags' => ['PHP', 'CodeIgniter 3', 'MySQL', 'Bootstrap', 'jQuery', 'AJAX', 'DataTables'],
     ]
 
